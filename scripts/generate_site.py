@@ -5,10 +5,59 @@ from __future__ import annotations
 import hashlib
 import html
 import json
+import os
 import re
 import subprocess
 import sys
+from datetime import date, datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
+
+WARSAW = ZoneInfo("Europe/Warsaw")
+LAST_UPDATED_ENV = "SITE_LAST_UPDATED"
+
+MONTH_PL_GENITIVE = (
+    "stycznia",
+    "lutego",
+    "marca",
+    "kwietnia",
+    "maja",
+    "czerwca",
+    "lipca",
+    "sierpnia",
+    "września",
+    "października",
+    "listopada",
+    "grudnia",
+)
+MONTH_UA_GENITIVE = (
+    "січня",
+    "лютого",
+    "березня",
+    "квітня",
+    "травня",
+    "червня",
+    "липня",
+    "серпня",
+    "вересня",
+    "жовтня",
+    "листопада",
+    "грудня",
+)
+MONTH_EN = (
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+)
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from icons import (  # noqa: E402
@@ -30,7 +79,9 @@ LINKEDIN = "https://www.linkedin.com/in/iryna-bilous-166343164/"
 IT_COMMUNITY = "https://it-community.io/people/iryna-bilous-38"
 EMAIL = "bilousiryna6@gmail.com"
 
-PROJECTS = json.loads((ROOT / "site-data/projects.json").read_text(encoding="utf-8"))
+_PROJECTS_JSON = json.loads((ROOT / "site-data/projects.json").read_text(encoding="utf-8"))
+SITE_META = _PROJECTS_JSON.get("site") or {}
+PROJECTS = {k: v for k, v in _PROJECTS_JSON.items() if k in ("avista", "vizja", "spdev")}
 
 PERIOD_LABELS = {
     "pl": {
@@ -803,6 +854,44 @@ def verify_html_classes_in_css() -> None:
         raise RuntimeError(f"CSS missing classes used in HTML: {', '.join(missing)}")
 
 
+def parse_last_updated(value: str) -> date:
+    value = value.strip()
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+        return date.fromisoformat(value)
+    raise ValueError(f"Invalid date (use YYYY-MM-DD): {value!r}")
+
+
+def resolve_last_updated() -> date:
+    env_val = os.environ.get(LAST_UPDATED_ENV, "").strip()
+    if env_val:
+        return parse_last_updated(env_val)
+    meta_val = (SITE_META.get("last_updated") or "").strip()
+    if meta_val:
+        return parse_last_updated(meta_val)
+    return datetime.now(WARSAW).date()
+
+
+def format_last_updated_human(lang: str, d: date) -> str:
+    day, month, year = d.day, d.month, d.year
+    if lang == "pl":
+        return f"{day} {MONTH_PL_GENITIVE[month - 1]} {year}"
+    if lang == "ua":
+        return f"{day} {MONTH_UA_GENITIVE[month - 1]} {year}"
+    return f"{day} {MONTH_EN[month - 1]} {year}"
+
+
+def last_updated_footer_html(lang: str, d: date) -> str:
+    labels = {
+        "pl": "Ostatnia aktualizacja:",
+        "en": "Last updated:",
+        "ua": "Останнє оновлення:",
+    }
+    human = format_last_updated_human(lang, d)
+    return (
+        f'{e(labels[lang])} <time datetime="{d.isoformat()}">{e(human)}</time>'
+    )
+
+
 def asset_prefix(lang: str) -> str:
     return "../" if lang in ("en", "ua") else ""
 
@@ -876,7 +965,7 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
     return "\n".join(chunks).replace("<motion", "<div").replace("</motion>", "</div>")
 
 
-def page(lang: str, css_ver: str) -> str:
+def page(lang: str, css_ver: str, last_updated: date) -> str:
     copy = t(lang)
     ap = asset_prefix(lang)
     paths = page_paths(lang)
@@ -1151,7 +1240,10 @@ def page(lang: str, css_ver: str) -> str:
     <div class="container footer-inner">
       <p class="name">Iryna Bilous</p>
       <p class="meta">{e(copy['footer_role'])}</p>
-      <p class="copy">{e(copy['footer_copy'])} · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
+      <motion class="footer-end">
+        <p class="copy">{e(copy['footer_copy'])} · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
+        <p class="copy footer-updated">{last_updated_footer_html(lang, last_updated)}</p>
+      </motion>
     </div>
   </footer>
   <script src="{ap}assets/js/main.js" defer></script>
@@ -1162,11 +1254,12 @@ def page(lang: str, css_ver: str) -> str:
 def main():
     compile_css()
     css_ver = css_cache_bust()
-    (ROOT / "index.html").write_text(page("pl", css_ver), encoding="utf-8")
+    last_updated = resolve_last_updated()
+    (ROOT / "index.html").write_text(page("pl", css_ver, last_updated), encoding="utf-8")
     (ROOT / "en").mkdir(exist_ok=True)
     (ROOT / "ua").mkdir(exist_ok=True)
-    (ROOT / "en/index.html").write_text(page("en", css_ver), encoding="utf-8")
-    (ROOT / "ua/index.html").write_text(page("ua", css_ver), encoding="utf-8")
+    (ROOT / "en/index.html").write_text(page("en", css_ver, last_updated), encoding="utf-8")
+    (ROOT / "ua/index.html").write_text(page("ua", css_ver, last_updated), encoding="utf-8")
     verify_html_classes_in_css()
     print(f"Generated HTML (main.css?v={css_ver}, {CSS_PATH.stat().st_size} bytes)")
 

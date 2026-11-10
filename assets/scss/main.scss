@@ -1276,6 +1276,17 @@ a {
     font-size: 0.9rem;
     margin: 0;
   }
+
+  .footer-end {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .footer-updated time {
+    font: inherit;
+    color: inherit;
+  }
 }
 
 .icon {
