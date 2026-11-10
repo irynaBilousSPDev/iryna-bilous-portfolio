@@ -54,6 +54,8 @@ try {
         .first();
       await wcagNum.waitFor({ state: "visible" });
 
+      const sampleNum = page.locator(".proof-grid .proof-card .num").first();
+
       const metrics = await wcagNum.evaluate((el) => {
         const style = getComputedStyle(el);
         const fontSize = parseFloat(style.fontSize);
@@ -70,6 +72,10 @@ try {
         };
       });
 
+      const sampleFontPx = await sampleNum.evaluate((el) =>
+        parseFloat(getComputedStyle(el).fontSize)
+      );
+
       assert(
         metrics.lines < 1.35,
         `${slug}@${width}px: WCAG .num wraps (${metrics.lines.toFixed(2)} lines)`
@@ -79,6 +85,18 @@ try {
         "nowrap",
         `${slug}@${width}px: expected nowrap`
       );
+      if (width === 360) {
+        assert(
+          sampleFontPx >= 20,
+          `${slug}@${width}px: .num font ${sampleFontPx}px < 20px`
+        );
+      }
+      if (width === 390) {
+        assert(
+          sampleFontPx >= 22,
+          `${slug}@${width}px: .num font ${sampleFontPx}px < 22px`
+        );
+      }
 
       if (width === 390 && slug === "pl") {
         await page.locator(".proof-grid").screenshot({
