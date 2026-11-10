@@ -142,10 +142,10 @@ def t(lang: str) -> dict:
                 ("2", "własne projekty", "Rozwijane z narzędziami AI"),
             ],
             "about_eyebrow": "O mnie",
-            "about_title": "Od Kalusza do Warszawy — ponad 10 lat w web developmencie",
+            "about_title": "Od Kałusza do Warszawy — ponad 10 lat w web developmencie",
             "about_paras": [
-                "Mam na imię Iryna. Pochodzę z Kalusza, a moja droga w IT zaczęła się w Iwano-Frankiwsku, gdzie spędziłam trzy dobre lata "
-                "i poznałam wielu przyjaciół. Od 2020 roku mieszkam i pracuję w Warszawie.",
+                "Mam na imię Iryna. Pochodzę z Kałusza (Ukraina), a moja droga w IT zaczęła się w Iwano-Frankiwsku, gdzie spędziłam "
+                "trzy dobre lata i poznałam wielu przyjaciół. Od 2020 roku mieszkam i pracuję w Warszawie.",
                 "Web developmentem zajmuję się od ponad 10 lat. Pracuję z WordPressem — po stronie frontendu i backendu: tworzę strony, "
                 "aplikacje webowe i różnego rodzaju integracje. Realizowałam projekty w wielu branżach — od edukacji i e-commerce "
                 "po inne produkty cyfrowe.",
@@ -156,7 +156,7 @@ def t(lang: str) -> dict:
             "facts": [
                 (
                     "Lokalizacja",
-                    "Pochodzę z Kałusza (Ukraina), od 2020 roku mieszkam w Warszawie · stacjonarnie i hybrydowo, zdalnie dla klientów z całego świata",
+                    "Warszawa · stacjonarnie i hybrydowo, zdalnie dla klientów z całego świata",
                 ),
                 ("Języki", "ukraiński — ojczysty\npolski — biegły\nangielski — średniozaawansowany"),
                 ("Wykształcenie", "Magister, budownictwo przemysłowe i cywilne — Politechnika Lwowska, 2008–2013"),
@@ -396,14 +396,15 @@ def t(lang: str) -> dict:
             "about_eyebrow": "About",
             "about_title": "From Kalush to Warsaw — over 10 years in web development",
             "about_paras": [
-                "My name is Iryna. I'm from Kalush, and my path in IT began in Ivano-Frankivsk, where I spent three good years and met many friends. Since 2020 I've lived and worked in Warsaw.",
+                "My name is Iryna. I come from Kalush, Ukraine, and my IT journey began in Ivano-Frankivsk, "
+                "where I spent three great years and made many friends. Since 2020 I have lived and worked in Warsaw.",
                 "I've been doing web development for over 10 years. I work with WordPress on the frontend and backend: websites, web applications, and various integrations. I've delivered projects across education, e-commerce, and other digital products.",
                 "I love learning and discovering new things. I completed a Data Analytics course and I'm currently studying Project Management and UI/UX Design. I'm especially interested in AI-assisted programming — I experiment with tools like Cursor daily, and after hours I maintain two personal projects.",
             ],
             "facts": [
                 (
                     "Location",
-                    "Originally from Kalush, Ukraine; living in Warsaw since 2020 · on-site and hybrid, remote for clients worldwide",
+                    "Warsaw · on-site and hybrid, remote for clients worldwide",
                 ),
                 ("Languages", "Ukrainian — native\nPolish — fluent\nEnglish — intermediate"),
                 ("Education", "MEng, industrial and civil engineering — Lviv Polytechnic National University, 2008–2013"),
@@ -630,14 +631,15 @@ def t(lang: str) -> dict:
         "about_eyebrow": "Про мене",
         "about_title": "Від Калуша до Варшави — понад 10 років у веброзробці",
         "about_paras": [
-            "Мене звати Ірина. Я з Калуша, а мій шлях в ІТ почався в Івано-Франківську, де я провела три хороші роки й познайомилася з багатьма друзями. З 2020 року живу й працюю у Варшаві.",
+            "Мене звати Ірина. Я з Калуша (Україна), а мій шлях в IT почався в Івано-Франківську, "
+            "де я провела три чудові роки і знайшла багато друзів. З 2020 року живу і працюю у Варшаві.",
             "Веброзробкою займаюся понад 10 років. Працюю з WordPress на фронтенді та бекенді: сайти, вебзастосунки та різні інтеграції. Реалізувала проєкти в освіті, e-commerce та інших цифрових продуктах.",
             "Люблю вчитися й відкривати нове. Завершила курс Data Analytics, зараз вивчаю Project Management і UI/UX Design. Особливо цікавить ШІ в програмуванні — щодня експериментую з інструментами на кшталт Cursor, а після роботи розвиваю два власні проєкти.",
         ],
         "facts": [
             (
                 "Локація",
-                "Походжу з Калуша (Україна), з 2020 року живу у Варшаві · офіс і гібрид, віддалено для клієнтів з усього світу",
+                "Варшава · офіс і гібрид, віддалено для клієнтів з усього світу",
             ),
             ("Мови", "українська — рідна\nпольська — вільно\nанглійська — середній рівень"),
             ("Освіта", "Магістр, промислове та цивільне будівництво — Львівська політехніка, 2008–2013"),
