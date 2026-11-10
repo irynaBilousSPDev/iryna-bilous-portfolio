@@ -1,0 +1,280 @@
+{
+  "avista": [
+    {
+      "id": "akademiata.pl",
+      "title": "Akademia Techniczno-Artystyczna",
+      "url": "https://akademiata.pl/",
+      "host": "akademiata.pl",
+      "team": null,
+      "period": "avista"
+    },
+    {
+      "id": "uni-munich.de",
+      "title": "Munich University of Digital Technologies",
+      "url": "https://uni-munich.de/",
+      "host": "uni-munich.de",
+      "team": null,
+      "period": "avista"
+    },
+    {
+      "id": "unixedu.com",
+      "title": "Unixedu",
+      "url": "https://unixedu.com/",
+      "host": "unixedu.com",
+      "team": null,
+      "period": "avista"
+    }
+  ],
+  "vizja": [
+    {
+      "id": "online.ilcentres.com",
+      "title": "IL Centres Online",
+      "url": "https://online.ilcentres.com/",
+      "host": "online.ilcentres.com",
+      "team": null,
+      "period": "vizja"
+    },
+    {
+      "id": "tevizja.pl",
+      "title": "Te Vizja",
+      "url": "https://tevizja.pl/",
+      "host": "tevizja.pl",
+      "team": null,
+      "period": "vizja"
+    },
+    {
+      "id": "bip.vizja.pl",
+      "title": "BIP VIZJA",
+      "url": "https://bip.vizja.pl/",
+      "host": "bip.vizja.pl",
+      "team": null,
+      "period": "vizja"
+    },
+    {
+      "id": "learnmore.vizja.pl",
+      "title": "Learn More VIZJA",
+      "url": "http://learnmore.vizja.pl/",
+      "host": "learnmore.vizja.pl",
+      "team": null,
+      "period": "vizja"
+    },
+    {
+      "id": "poradnia.tevizja.pl",
+      "title": "Poradnia Te Vizja",
+      "url": "https://poradnia.tevizja.pl/",
+      "host": "poradnia.tevizja.pl",
+      "team": "Wspólnie z Agnieszką",
+      "period": "vizja"
+    },
+    {
+      "id": "vizjafood.pl",
+      "title": "VIZJA Food",
+      "url": "https://vizjafood.pl/",
+      "host": "vizjafood.pl",
+      "team": null,
+      "period": "vizja"
+    },
+    {
+      "id": "vizja.pl",
+      "title": "Uniwersytet VIZJA",
+      "url": "https://vizja.pl/",
+      "host": "vizja.pl",
+      "team": "Wspólnie z Agnieszką",
+      "period": "vizja"
+    },
+    {
+      "id": "vizjapark.pl",
+      "title": "VIZJA Park",
+      "url": "https://vizjapark.pl/",
+      "host": "vizjapark.pl",
+      "team": null,
+      "period": "vizja"
+    },
+    {
+      "id": "summercamp.vizja.pl",
+      "title": "VIZJA Summer Camp",
+      "url": "https://summercamp.vizja.pl/",
+      "host": "summercamp.vizja.pl",
+      "team": null,
+      "period": "vizja"
+    },
+    {
+      "id": "certyfikatpolski.vizja.pl",
+      "title": "Certyfikat Polski VIZJA",
+      "url": "https://certyfikatpolski.vizja.pl/",
+      "host": "certyfikatpolski.vizja.pl",
+      "team": null,
+      "period": "vizja"
+    }
+  ],
+  "spdev": [
+    {
+      "id": "orthodontiste-marseille-sastre.fr",
+      "title": "Orthodontiste Marseille Sastre",
+      "url": "https://orthodontiste-marseille-sastre.fr/",
+      "host": "orthodontiste-marseille-sastre.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "selarl-kaempf-muller-kaempf.chirurgiens-dentistes.fr",
+      "title": "Kaempf Muller Kaempf",
+      "url": "https://selarl-kaempf-muller-kaempf.chirurgiens-dentistes.fr/",
+      "host": "selarl-kaempf-muller-kaempf.chirurgiens-dentistes.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "orthodontiste-nussbaumer-strasbourg.fr",
+      "title": "Orthodontiste Nussbaumer Strasbourg",
+      "url": "https://orthodontiste-nussbaumer-strasbourg.fr/",
+      "host": "orthodontiste-nussbaumer-strasbourg.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "neurotech-nl.com",
+      "title": "Neurotech NL",
+      "url": "https://neurotech-nl.com/",
+      "host": "neurotech-nl.com",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "orthodontie-biegel.fr",
+      "title": "Orthodontie Biegel",
+      "url": "https://orthodontie-biegel.fr/",
+      "host": "orthodontie-biegel.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "dentistes-lille-carredessourires.fr",
+      "title": "Dentistes Lille Carredessourires",
+      "url": "https://dentistes-lille-carredessourires.fr/",
+      "host": "dentistes-lille-carredessourires.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "orthodontistes-toulouse-saladin-hamel.fr",
+      "title": "Orthodontistes Toulouse Saladin Hamel",
+      "url": "https://orthodontistes-toulouse-saladin-hamel.fr/",
+      "host": "orthodontistes-toulouse-saladin-hamel.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "dr-eric-gathrat.chirurgiens-dentistes.fr",
+      "title": "Eric Gathrat",
+      "url": "https://dr-eric-gathrat.chirurgiens-dentistes.fr/",
+      "host": "dr-eric-gathrat.chirurgiens-dentistes.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "dr-houver-christophe.chirurgiens-dentistes.fr",
+      "title": "Houver Christophe",
+      "url": "https://dr-houver-christophe.chirurgiens-dentistes.fr/",
+      "host": "dr-houver-christophe.chirurgiens-dentistes.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "huumsauna.com",
+      "title": "Huum Sauna",
+      "url": "https://huumsauna.com/",
+      "host": "huumsauna.com",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "orthodontie-egloff.fr",
+      "title": "Orthodontie Egloff",
+      "url": "https://orthodontie-egloff.fr/",
+      "host": "orthodontie-egloff.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "andreas-capital.com",
+      "title": "Andreas Capital",
+      "url": "https://andreas-capital.com/",
+      "host": "andreas-capital.com",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "dentiste-lyon-villeurbanne-roussel.fr",
+      "title": "Dentiste Lyon Villeurbanne Roussel",
+      "url": "https://dentiste-lyon-villeurbanne-roussel.fr/",
+      "host": "dentiste-lyon-villeurbanne-roussel.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "selarl-kanter-daniel.chirurgiens-dentistes.fr",
+      "title": "Kanter Daniel",
+      "url": "https://selarl-kanter-daniel.chirurgiens-dentistes.fr/",
+      "host": "selarl-kanter-daniel.chirurgiens-dentistes.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "scp-mazas-daude.chirurgiens-dentistes.fr",
+      "title": "Mazas Daude",
+      "url": "https://scp-mazas-daude.chirurgiens-dentistes.fr/",
+      "host": "scp-mazas-daude.chirurgiens-dentistes.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "dental7paris.com",
+      "title": "Dental 7 Paris",
+      "url": "https://www.dental7paris.com/",
+      "host": "dental7paris.com",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "dentistes-dedieu-coll.fr",
+      "title": "Dentistes Dedieu Coll",
+      "url": "https://dentistes-dedieu-coll.fr/",
+      "host": "dentistes-dedieu-coll.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "selarl-dr-eric-ursat.chirurgiens-dentistes.fr",
+      "title": "Eric Ursat",
+      "url": "https://selarl-dr-eric-ursat.chirurgiens-dentistes.fr/",
+      "host": "selarl-dr-eric-ursat.chirurgiens-dentistes.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "selarl-kdentaire.chirurgiens-dentistes.fr",
+      "title": "Kdentaire",
+      "url": "https://selarl-kdentaire.chirurgiens-dentistes.fr/",
+      "host": "selarl-kdentaire.chirurgiens-dentistes.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "dr-kaufmann-olivier.chirurgiens-dentistes.fr",
+      "title": "Kaufmann Olivier",
+      "url": "https://dr-kaufmann-olivier.chirurgiens-dentistes.fr/",
+      "host": "dr-kaufmann-olivier.chirurgiens-dentistes.fr",
+      "team": null,
+      "period": "spdev"
+    },
+    {
+      "id": "openstudycollege.com",
+      "title": "Open Study College",
+      "url": "https://www.openstudycollege.com/",
+      "host": "openstudycollege.com",
+      "team": "Projekt zespołowy",
+      "period": "spdev"
+    }
+  ]
+}
