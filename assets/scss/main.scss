@@ -678,6 +678,10 @@ body.is-menu-open {
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 
+  @media (max-width: 430px) {
+    gap: 10px;
+  }
+
   @media (min-width: 900px) {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
@@ -725,6 +729,28 @@ body.is-menu-open {
     font-weight: 700;
     color: $ink;
     line-height: 1.1;
+
+    @media (max-width: 899px) {
+      white-space: nowrap;
+      font-size: clamp(1.125rem, 3.25vw, 1.5rem);
+    }
+
+    @media (max-width: 430px) {
+      font-size: clamp(1rem, 3.1vw, 1.2rem);
+    }
+  }
+
+  @media (max-width: 430px) {
+    padding: 12px 11px;
+
+    .proof-head {
+      gap: 10px;
+    }
+
+    .proof-tile {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   .label {
