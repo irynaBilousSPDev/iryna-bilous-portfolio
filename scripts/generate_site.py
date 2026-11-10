@@ -965,6 +965,20 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
     return "\n".join(chunks).replace("<motion", "<div").replace("</motion>", "</div>")
 
 
+def lang_switch_html(paths: dict[str, str], current: str) -> str:
+    chunks = []
+    for code, label in (("pl", "PL"), ("en", "EN"), ("ua", "UA")):
+        href = paths[code]
+        if code == current:
+            chunks.append(f'<span aria-current="page">{label}</span>')
+        else:
+            chunks.append(
+                f'<a href="{e(href)}" hreflang="{code if code != "ua" else "uk"}" '
+                f'lang="{code if code != "ua" else "uk"}">{label}</a>'
+            )
+    return "".join(chunks)
+
+
 def page(lang: str, css_ver: str, last_updated: date) -> str:
     copy = t(lang)
     ap = asset_prefix(lang)
@@ -975,13 +989,7 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
     nav_desktop = "".join(f'<a href="{e(h)}">{e(l)}</a>' for l, h in copy["nav"])
     nav_mobile = "".join(f'<a href="{e(h)}">{e(l)}</a>' for l, h in copy["nav"])
 
-    lang_links = ""
-    for code, label in (("pl", "PL"), ("en", "EN"), ("ua", "UA")):
-        href = paths[code]
-        if code == current:
-            lang_links += f'<span aria-current="page">{label}</span>'
-        else:
-            lang_links += f'<a href="{e(href)}" hreflang="{code if code != "ua" else "uk"}" lang="{code if code != "ua" else "uk"}">{label}</a>'
+    lang_links = lang_switch_html(paths, current)
 
     proof_cards = ""
     for n, label, sub in copy["proof"]:
@@ -1089,12 +1097,21 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
         <nav aria-label="{e(copy['lang_aria'])}"><ul class="lang-switch">{lang_links}</ul></nav>
         <a class="btn btn--primary btn-header" href="#kontakt">{e(copy['cta_write'])}</a>
         <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="nav-mobile" data-menu-toggle>
-          <span class="sr-only">{e(copy['menu_open'])}</span>
+          <span class="sr-only" data-open="{e(copy['menu_open'])}" data-close="{e(copy['menu_close'])}">{e(copy['menu_open'])}</span>
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
-    <nav class="nav-mobile container" id="nav-mobile" aria-label="{e(copy['nav_aria'])} mobile">{nav_mobile}</nav>
+    <div class="nav-mobile-wrap" id="nav-mobile" data-nav-mobile hidden>
+      <button type="button" class="nav-mobile-backdrop" data-menu-backdrop aria-label="{e(copy['menu_close'])}"></button>
+      <div class="nav-mobile-panel">
+        <nav class="nav-mobile" aria-label="{e(copy['nav_aria'])} mobile">{nav_mobile}</nav>
+        <div class="nav-mobile-footer">
+          <nav aria-label="{e(copy['lang_aria'])}"><ul class="lang-switch lang-switch--menu">{lang_links}</ul></nav>
+          <a class="btn btn--primary nav-mobile-cta" href="#kontakt">{e(copy['cta_write'])}</a>
+        </div>
+      </div>
+    </div>
   </header>
   <main id="main">
     <section class="section section--hero" id="hero" aria-labelledby="hero-title">
