@@ -61,9 +61,11 @@ MONTH_EN = (
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from icons import (  # noqa: E402
+    BLUE,
     COMP_ICON_KEYS,
     FACT_ICON_KEYS,
     PINK,
+    PROOF_ICON_KEYS,
     comp_icon_color,
     stroke_icon,
 )
@@ -1035,9 +1037,15 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
     lang_links = lang_switch_html(paths, current)
 
     proof_cards = ""
-    for n, label, sub in copy["proof"]:
+    for i, (n, label, sub) in enumerate(copy["proof"]):
+        tile = "sky" if i % 2 == 0 else "pink"
+        color = BLUE if tile == "sky" else PINK
+        icon = stroke_icon(PROOF_ICON_KEYS[i], color=color, size=22)
         proof_cards += f"""<article class="proof-card">
-          <p class="num">{e(n)}</p>
+          <div class="proof-head">
+            <span class="proof-tile proof-tile--{tile}" aria-hidden="true">{icon}</span>
+            <p class="num">{e(n)}</p>
+          </div>
           <p class="label">{e(label)}</p>
           <p class="sub">{e(sub)}</p>
         </article>"""
