@@ -146,8 +146,9 @@ def t(lang: str) -> dict:
             "about_eyebrow": "O mnie",
             "about_title": "Od Kałusza do Warszawy — ponad 10 lat w web developmencie",
             "about_paras": [
-                "Mam na imię Iryna. Pochodzę z Kałusza (Ukraina), a moja droga w IT zaczęła się w Iwano-Frankiwsku, gdzie spędziłam "
-                "trzy dobre lata i poznałam wielu przyjaciół. Od 2020 roku mieszkam i pracuję w Warszawie.",
+                "Mam na imię Iryna. Pochodzę z Kałusza (Ukraina), a moja droga w IT zaczęła się w Iwano-Frankiwsku, gdzie w firmie "
+                "SP//DEV zdobywałam praktykę i wiedzę, pracując z WordPressem, i poznałam wielu przyjaciół z branży. "
+                "Od 2020 roku mieszkam i pracuję w Warszawie.",
                 "Web developmentem zajmuję się od ponad 10 lat. Pracuję z WordPressem — po stronie frontendu i backendu: tworzę strony, "
                 "aplikacje webowe i różnego rodzaju integracje. Realizowałam projekty w wielu branżach — od edukacji i e-commerce "
                 "po inne produkty cyfrowe.",
@@ -410,8 +411,9 @@ def t(lang: str) -> dict:
             "about_eyebrow": "About",
             "about_title": "From Kalush to Warsaw — over 10 years in web development",
             "about_paras": [
-                "My name is Iryna. I come from Kalush, Ukraine, and my IT journey began in Ivano-Frankivsk, "
-                "where I spent three great years and made many friends. Since 2020 I have lived and worked in Warsaw.",
+                "My name is Iryna. I come from Kalush (Ukraine), and my path in IT began in Ivano-Frankivsk, where I gained "
+                "hands-on experience and knowledge working with WordPress at SP//DEV and made many friends in the industry. "
+                "Since 2020 I have been living and working in Warsaw.",
                 "I've been doing web development for over 10 years. I work with WordPress on the frontend and backend: websites, web applications, and various integrations. I've delivered projects across education, e-commerce, and other digital products.",
                 "I love learning and discovering new things. I completed a Data Analytics course and I'm currently studying Project Management and UI/UX Design. I'm especially interested in AI-assisted programming — I experiment with tools like Cursor daily, and after hours I maintain two personal projects.",
             ],
@@ -657,8 +659,9 @@ def t(lang: str) -> dict:
         "about_eyebrow": "Про мене",
         "about_title": "Від Калуша до Варшави — понад 10 років у веброзробці",
         "about_paras": [
-            "Мене звати Ірина. Я з Калуша (Україна), а мій шлях в IT почався в Івано-Франківську, "
-            "де я провела три чудові роки і знайшла багато друзів. З 2020 року живу і працюю у Варшаві.",
+            "Мене звати Ірина. Я родом з Калуша (Україна), а мій шлях в IT почався в Івано-Франківську, "
+            "де в компанії SP//DEV я здобувала практику і знання, працюючи з WordPress, і знайшла багато друзів у галузі. "
+            "З 2020 року живу і працюю у Варшаві.",
             "Веброзробкою займаюся понад 10 років. Працюю з WordPress на фронтенді та бекенді: сайти, вебзастосунки та різні інтеграції. Реалізувала проєкти в освіті, e-commerce та інших цифрових продуктах.",
             "Люблю вчитися й відкривати нове. Завершила курс Data Analytics, зараз вивчаю Project Management і UI/UX Design. Особливо цікавить ШІ в програмуванні — щодня експериментую з інструментами на кшталт Cursor, а після роботи розвиваю два власні проєкти.",
         ],
