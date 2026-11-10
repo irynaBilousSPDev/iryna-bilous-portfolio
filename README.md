@@ -24,6 +24,7 @@ Live URL (project site): `https://irynabilousspdev.github.io/iryna-bilous-portfo
    npm run build:site
    ```
 2. **Copy or translations** — edit strings in `scripts/generate_site.py` (`t()`), then `npm run build:site` (compiles SCSS, regenerates HTML with a fresh `main.css?v=…` cache-bust, and verifies every HTML class exists in CSS).
+3. **Footer “last updated”** — set automatically from the build date (Europe/Warsaw), or override with env `SITE_LAST_UPDATED=YYYY-MM-DD` or `site.last_updated` in `site-data/projects.json`.
 3. **Styles only** — edit `assets/scss/main.scss`, then `npm run build:css` and commit `assets/css/main.css`, or run full `npm run build:site`.
 4. **New project screenshots** — add `assets/img/previews/<host>.webp` (640×357 aspect), matching `host` in `projects.json`.
 
