@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://irynabilousspdev.github.io/iryna-bilous-portfolio"
 LINKEDIN = "https://www.linkedin.com/in/iryna-bilous-166343164/"
+IT_COMMUNITY = "https://it-community.io/people/iryna-bilous-38"
 EMAIL = "bilousiryna6@gmail.com"
 
 PROJECTS = json.loads((ROOT / "site-data/projects.json").read_text(encoding="utf-8"))
@@ -787,9 +788,6 @@ def page(lang: str) -> str:
   <link rel="alternate" hreflang="uk" href="{SITE}/ua/">
   <link rel="alternate" hreflang="x-default" href="{SITE}/">"""
 
-    # IT.Community profile URL not in source materials — label only (see build report)
-    itc_note = ' aria-disabled="true" title="URL do uzupełnienia"'
-
     return f"""<!DOCTYPE html>
 <html lang="{copy['html_lang']}">
 <head>
@@ -939,7 +937,7 @@ def page(lang: str) -> str:
           <p class="direct-label">{e(copy['contact_direct'])}</p>
           <a class="email-lg" href="mailto:{EMAIL}">{EMAIL}</a>
           <a class="btn btn--on-pink" href="mailto:{EMAIL}">{e(copy['cta_write'])}</a>
-          <span class="btn btn--ghost-light" role="link"{itc_note}>{e(copy['itcommunity'])}</span>
+          <a class="btn btn--ghost-light" href="{IT_COMMUNITY}" target="_blank" rel="noopener noreferrer">{e(copy['itcommunity'])}</a>
           <a class="btn btn--ghost-light" href="{LINKEDIN}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </motion>
       </motion>
