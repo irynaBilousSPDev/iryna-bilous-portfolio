@@ -62,7 +62,6 @@ MONTH_EN = (
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from icons import (  # noqa: E402
     COMP_ICON_KEYS,
-    CURRENT_WORK_ICON_KEYS,
     FACT_ICON_KEYS,
     PINK,
     comp_icon_color,
@@ -304,27 +303,38 @@ def t(lang: str) -> dict:
             "current_work_kicker": "Obecnie pracuję nad",
             "current_work_heading": "Redesign i migracja serwisu ADN Akademia",
             "current_work_lead": (
-                "Projektuję, koduję i wdrażam na WordPressie nową wersję serwisu dużej firmy szkoleniowej: od architektury "
-                "informacji i wireframe’ów po zakup szkoleń w WooCommerce i zapisy trafiające do CRM. Przenoszę też całą "
-                "treść serwisu i tworzę bloki Gutenberga oparte na ACF. Przy pracy korzystam z Cursora i narzędzi AI, co "
-                "pozwala mi zrealizować projekt w około 3 tygodnie."
+                "Prowadzę cały projekt samodzielnie, od analizy po wdrożenie: nową wersję serwisu dużej firmy szkoleniowej "
+                "projektuję, koduję i wdrażam na WordPressie. Przy pracy korzystam z Cursora i narzędzi AI, co pozwala mi "
+                "zrealizować projekt w około 3 tygodnie."
             ),
-            "current_work_points": [
+            "current_work_steps": [
                 (
-                    "Architektura i ścieżki użytkownika",
-                    "Nowa mapa serwisu oraz schematy zakupu, voucherów i konta klienta.",
+                    "Analiza",
+                    "Obecny serwis, treści, ścieżki użytkownika i potrzeby firmy.",
                 ),
                 (
-                    "Wireframe’y w Figmie",
-                    "Ponad 48 plansz, m.in. strona główna, katalog, karta szkolenia, kursy, konferencje, koszyk, Moje konto i wersja mobilna.",
+                    "Architektura informacji",
+                    "Nowa mapa serwisu, schematy zakupu, voucherów i konta klienta.",
                 ),
                 (
-                    "Zakupy w WooCommerce",
-                    "Zapis przez koszyk z opcją „Zapłać teraz” lub „Tylko rezerwacja”, a w kolejnym etapie szybki zakup i pełna obsługa stanów zamówienia.",
+                    "Wireframe’y i projekt w Figmie",
+                    "Ponad 48 plansz, m.in. strona główna, katalog, karta szkolenia, koszyk, Moje konto i wersja mobilna.",
                 ),
                 (
-                    "Zapisy i integracja z CRM",
-                    "Formularze zapisu i zapytań B2B przekazujące zgłoszenia do CRM firmy.",
+                    "Kodowanie",
+                    "Własny motyw i bloki Gutenberga oparte na ACF.",
+                ),
+                (
+                    "WooCommerce",
+                    "Koszyk z opcją „Zapłać teraz” lub „Tylko rezerwacja”, a w kolejnym etapie szybki zakup.",
+                ),
+                (
+                    "Integracja z CRM",
+                    "Formularze zapisu i zapytań B2B przekazujące zgłoszenia do CRM.",
+                ),
+                (
+                    "Migracja treści i wdrożenie",
+                    "Przeniesienie całej treści serwisu i publikacja.",
                 ),
             ],
             "current_work_footer_before": (
@@ -541,27 +551,38 @@ def t(lang: str) -> dict:
             "current_work_kicker": "Currently working on",
             "current_work_heading": "Redesign and migration of the ADN Akademia website",
             "current_work_lead": (
-                "I'm designing, building, and implementing on WordPress a new version of a major training company's website: "
-                "from information architecture and wireframes through purchasing courses in WooCommerce and registrations "
-                "flowing into the CRM. I'm also migrating all site content and creating Gutenberg blocks built on ACF. I use "
-                "Cursor and AI tools in my day-to-day work, which helps me deliver the project in about three weeks."
+                "I'm running the whole project on my own, from analysis through launch: I design, build, and implement on "
+                "WordPress a new version of a major training company's website. I use Cursor and AI tools in my work, which "
+                "helps me deliver the project in about three weeks."
             ),
-            "current_work_points": [
+            "current_work_steps": [
                 (
-                    "Information architecture and user journeys",
-                    "A new site map plus flows for purchasing, vouchers, and the customer account.",
+                    "Analysis",
+                    "The current site, content, user journeys, and the company's needs.",
                 ),
                 (
-                    "Wireframes in Figma",
-                    "More than 48 screens, including homepage, catalogue, course page, courses, conferences, cart, My account, and the mobile version.",
+                    "Information architecture",
+                    "A new site map and flows for purchasing, vouchers, and the customer account.",
                 ),
                 (
-                    "Purchases in WooCommerce",
-                    "Enrolment via the cart with a “Pay now” or “Reservation only” option; in the next phase, quick checkout and full order-status handling.",
+                    "Wireframes and design in Figma",
+                    "More than 48 screens, including homepage, catalogue, course page, cart, My account, and the mobile version.",
                 ),
                 (
-                    "Sign-ups and CRM integration",
-                    "Registration and B2B enquiry forms that pass submissions to the company's CRM.",
+                    "Development",
+                    "A custom theme and Gutenberg blocks built on ACF.",
+                ),
+                (
+                    "WooCommerce",
+                    "Cart checkout with “Pay now” or “Reservation only”; quick purchase in the next phase.",
+                ),
+                (
+                    "CRM integration",
+                    "Registration and B2B enquiry forms that pass submissions to the CRM.",
+                ),
+                (
+                    "Content migration and launch",
+                    "Migrating all site content and going live.",
                 ),
             ],
             "current_work_footer_before": (
@@ -773,27 +794,38 @@ def t(lang: str) -> dict:
         "current_work_kicker": "Зараз працюю над",
         "current_work_heading": "Редизайн і міграція сайту ADN Akademia",
         "current_work_lead": (
-            "Проєктую, кодую та впроваджую на WordPress нову версію сайту великої навчальної компанії: від інформаційної "
-            "архітектури й вайрфреймів до купівлі тренінгів у WooCommerce і записів, що потрапляють у CRM. Також переношу "
-            "весь контент сайту й створюю блоки Gutenberg на основі ACF. У роботі користуюся Cursor і ШІ-інструментами, що "
-            "дозволяє реалізувати проєкт приблизно за 3 тижні."
+            "Веду весь проєкт самостійно, від аналізу до запуску: нову версію сайту великої навчальної компанії проєктую, "
+            "кодую й впроваджую на WordPress. У роботі користуюся Cursor і ШІ-інструментами, що дозволяє реалізувати "
+            "проєкт приблизно за 3 тижні."
         ),
-        "current_work_points": [
+        "current_work_steps": [
             (
-                "Архітектура та користувацькі шляхи",
-                "Нова карта сайту та схеми покупки, ваучерів і облікового запису клієнта.",
+                "Аналіз",
+                "Поточний сайт, контент, користувацькі шляхи та потреби компанії.",
             ),
             (
-                "Вайрфрейми у Figma",
-                "Понад 48 макетів: головна, каталог, картка тренінгу, курси, конференції, кошик, Мій обліковий запис і мобільна версія.",
+                "Інформаційна архітектура",
+                "Нова карта сайту, схеми покупки, ваучерів і облікового запису клієнта.",
             ),
             (
-                "Покупки в WooCommerce",
-                "Запис через кошик з опцією «Сплатити зараз» або «Лише резервація»; наступним етапом — швидка покупка та повна обробка статусів замовлень.",
+                "Вайрфрейми та дизайн у Figma",
+                "Понад 48 макетів: головна, каталог, картка тренінгу, кошик, Мій обліковий запис і мобільна версія.",
             ),
             (
-                "Записи та інтеграція з CRM",
-                "Форми запису та B2B-запитів, що передають звернення в CRM компанії.",
+                "Кодування",
+                "Власна тема й блоки Gutenberg на основі ACF.",
+            ),
+            (
+                "WooCommerce",
+                "Кошик з опцією «Сплатити зараз» або «Лише резервація»; на наступному етапі — швидка покупка.",
+            ),
+            (
+                "Інтеграція з CRM",
+                "Форми запису та B2B-запитів, що передають звернення в CRM.",
+            ),
+            (
+                "Міграція контенту й запуск",
+                "Перенесення всього контенту сайту та публікація.",
             ),
         ],
         "current_work_footer_before": (
@@ -1011,11 +1043,16 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
         comp_items += f"""<article class="item"><div class="ico">{icon}</div>
           <div><h3>{e(title)}</h3><p>{e(desc)}</p></div></article>"""
 
-    current_work_points = ""
-    for i, (title, desc) in enumerate(copy["current_work_points"]):
-        icon = stroke_icon(CURRENT_WORK_ICON_KEYS[i], color=comp_icon_color(i), size=26)
-        current_work_points += f"""<article class="item"><div class="ico">{icon}</div>
-          <div><h3>{e(title)}</h3><p>{e(desc)}</p></div></article>"""
+    current_work_steps = ""
+    for i, (title, desc) in enumerate(copy["current_work_steps"], 1):
+        num = f"{i:02d}"
+        current_work_steps += f"""<li class="current-work-step">
+          <span class="step-num" aria-hidden="true">{num}</span>
+          <div class="step-body">
+            <h3 class="step-title">{e(title)}</h3>
+            <p class="step-desc">{e(desc)}</p>
+          </div>
+        </li>"""
 
     services = ""
     for i, (title, desc, when) in enumerate(copy["services"], 1):
@@ -1199,7 +1236,7 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
           <p class="current-work-kicker">{e(copy['current_work_kicker'])}</p>
           <h2 class="current-work-title" id="current-work-heading">{e(copy['current_work_heading'])}</h2>
           <p class="current-work-lead">{e(copy['current_work_lead'])}</p>
-          <div class="comp-list current-work-points">{current_work_points}</div>
+          <ol class="current-work-steps">{current_work_steps}</ol>
           <p class="current-work-footer">
             {e(copy['current_work_footer_before'])}
             <a href="{ADN_AKADEMIA_URL}" target="_blank" rel="noopener noreferrer">{e(copy['current_work_footer_link'])}</a>
