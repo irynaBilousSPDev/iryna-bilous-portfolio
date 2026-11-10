@@ -62,7 +62,6 @@ MONTH_EN = (
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from icons import (  # noqa: E402
     COMP_ICON_KEYS,
-    CURRENT_WORK_ICON_KEYS,
     FACT_ICON_KEYS,
     PINK,
     comp_icon_color,
@@ -108,7 +107,10 @@ def t(lang: str) -> dict:
         return {
             "html_lang": "pl",
             "title": "Iryna Bilous — Frontend / WordPress Developer",
-            "meta_description": "Tworzę strony i sklepy na WordPressie — motywy, WooCommerce, integracje i dostępność WCAG. Portfolio Iryny Bilous, Warszawa.",
+            "meta_description": (
+                "Tworzę strony i sklepy na WordPressie — motywy, WooCommerce, integracje i dostępność WCAG. "
+                "Warszawa · stacjonarnie i online. Portfolio Iryny Bilous."
+            ),
             "nav": [
                 ("O mnie", "#o-mnie"),
                 ("Kompetencje", "#kompetencje"),
@@ -122,7 +124,7 @@ def t(lang: str) -> dict:
             "lang_aria": "Język strony",
             "cta_write": "Napisz do mnie",
             "cta_projects": "Zobacz realizacje",
-            "badge": "Frontend / WordPress Developer · Warszawa stacjonarnie, zdalnie cały świat",
+            "badge": "Frontend / WordPress Developer · Warszawa stacjonarnie i online",
             "hello": "Cześć, jestem Iryna",
             "hero_h1": "Tworzę strony i sklepy na WordPressie",
             "hero_lead": (
@@ -142,10 +144,11 @@ def t(lang: str) -> dict:
                 ("2", "własne projekty", "Rozwijane z narzędziami AI"),
             ],
             "about_eyebrow": "O mnie",
-            "about_title": "Od Kalusza do Warszawy — ponad 10 lat w web developmencie",
+            "about_title": "Od Kałusza do Warszawy — ponad 10 lat w web developmencie",
             "about_paras": [
-                "Mam na imię Iryna. Pochodzę z Kalusza, a moja droga w IT zaczęła się w Iwano-Frankiwsku, gdzie spędziłam trzy dobre lata "
-                "i poznałam wielu przyjaciół. Od 2020 roku mieszkam i pracuję w Warszawie.",
+                "Mam na imię Iryna. Pochodzę z Kałusza (Ukraina), a moja droga w IT zaczęła się w Iwano-Frankiwsku, gdzie w firmie "
+                "SP//DEV zdobywałam praktykę i wiedzę, pracując z WordPressem, i poznałam wielu przyjaciół z branży. "
+                "Od 2020 roku mieszkam i pracuję w Warszawie.",
                 "Web developmentem zajmuję się od ponad 10 lat. Pracuję z WordPressem — po stronie frontendu i backendu: tworzę strony, "
                 "aplikacje webowe i różnego rodzaju integracje. Realizowałam projekty w wielu branżach — od edukacji i e-commerce "
                 "po inne produkty cyfrowe.",
@@ -156,7 +159,7 @@ def t(lang: str) -> dict:
             "facts": [
                 (
                     "Lokalizacja",
-                    "Pochodzę z Kałusza (Ukraina), od 2020 roku mieszkam w Warszawie · stacjonarnie i hybrydowo, zdalnie dla klientów z całego świata",
+                    "Warszawa · stacjonarnie, hybrydowo i online",
                 ),
                 ("Języki", "ukraiński — ojczysty\npolski — biegły\nangielski — średniozaawansowany"),
                 ("Wykształcenie", "Magister, budownictwo przemysłowe i cywilne — Politechnika Lwowska, 2008–2013"),
@@ -304,27 +307,38 @@ def t(lang: str) -> dict:
             "current_work_kicker": "Obecnie pracuję nad",
             "current_work_heading": "Redesign i migracja serwisu ADN Akademia",
             "current_work_lead": (
-                "Projektuję, koduję i wdrażam na WordPressie nową wersję serwisu dużej firmy szkoleniowej: od architektury "
-                "informacji i wireframe’ów po zakup szkoleń w WooCommerce i zapisy trafiające do CRM. Przenoszę też całą "
-                "treść serwisu i tworzę bloki Gutenberga oparte na ACF. Przy pracy korzystam z Cursora i narzędzi AI, co "
-                "pozwala mi zrealizować projekt w około 3 tygodnie."
+                "Prowadzę cały projekt samodzielnie, od analizy po wdrożenie: nową wersję serwisu dużej firmy szkoleniowej "
+                "projektuję, koduję i wdrażam na WordPressie. Przy pracy korzystam z Cursora i narzędzi AI, co pozwala mi "
+                "zrealizować projekt w około 3 tygodnie."
             ),
-            "current_work_points": [
+            "current_work_steps": [
                 (
-                    "Architektura i ścieżki użytkownika",
-                    "Nowa mapa serwisu oraz schematy zakupu, voucherów i konta klienta.",
+                    "Analiza",
+                    "Obecny serwis, treści, ścieżki użytkownika i potrzeby firmy.",
                 ),
                 (
-                    "Wireframe’y w Figmie",
-                    "Ponad 48 plansz, m.in. strona główna, katalog, karta szkolenia, kursy, konferencje, koszyk, Moje konto i wersja mobilna.",
+                    "Architektura informacji",
+                    "Nowa mapa serwisu, schematy zakupu, voucherów i konta klienta.",
                 ),
                 (
-                    "Zakupy w WooCommerce",
-                    "Zapis przez koszyk z opcją „Zapłać teraz” lub „Tylko rezerwacja”, a w kolejnym etapie szybki zakup i pełna obsługa stanów zamówienia.",
+                    "Wireframe’y i projekt w Figmie",
+                    "Ponad 48 plansz, m.in. strona główna, katalog, karta szkolenia, koszyk, Moje konto i wersja mobilna.",
                 ),
                 (
-                    "Zapisy i integracja z CRM",
-                    "Formularze zapisu i zapytań B2B przekazujące zgłoszenia do CRM firmy.",
+                    "Kodowanie",
+                    "Własny motyw i bloki Gutenberga oparte na ACF.",
+                ),
+                (
+                    "WooCommerce",
+                    "Koszyk z opcją „Zapłać teraz” lub „Tylko rezerwacja”, a w kolejnym etapie szybki zakup.",
+                ),
+                (
+                    "Integracja z CRM",
+                    "Formularze zapisu i zapytań B2B przekazujące zgłoszenia do CRM.",
+                ),
+                (
+                    "Migracja treści i wdrożenie",
+                    "Przeniesienie całej treści serwisu i publikacja.",
                 ),
             ],
             "current_work_footer_before": (
@@ -348,7 +362,8 @@ def t(lang: str) -> dict:
             ),
             "contact_direct": "Napisz bezpośrednio",
             "itcommunity": "Profil na IT.Community",
-            "footer_role": "Frontend / WordPress Developer · Warszawa",
+            "footer_role": "Frontend / WordPress Developer",
+            "footer_location": "Warszawa · stacjonarnie i online",
             "footer_copy": "© 2026 Iryna Bilous",
         }
     if lang == "en":
@@ -359,7 +374,7 @@ def t(lang: str) -> dict:
             "title": "Iryna Bilous — Frontend / WordPress Developer",
             "meta_description": (
                 "I build WordPress websites and WooCommerce stores — custom themes, integrations, and WCAG accessibility. "
-                "On-site in Warsaw, remote worldwide. Portfolio of Iryna Bilous."
+                "Warsaw · on-site & online. Portfolio of Iryna Bilous."
             ),
             "nav": [
                 ("About", "#o-mnie"),
@@ -374,7 +389,7 @@ def t(lang: str) -> dict:
             "lang_aria": "Site language",
             "cta_write": "Get in touch",
             "cta_projects": "View projects",
-            "badge": "Frontend / WordPress Developer · On-site in Warsaw, remote worldwide",
+            "badge": "Frontend / WordPress Developer · Warsaw · on-site & online",
             "hello": "Hi, I'm Iryna",
             "hero_h1": "I build WordPress websites and online stores",
             "hero_lead": (
@@ -396,14 +411,16 @@ def t(lang: str) -> dict:
             "about_eyebrow": "About",
             "about_title": "From Kalush to Warsaw — over 10 years in web development",
             "about_paras": [
-                "My name is Iryna. I'm from Kalush, and my path in IT began in Ivano-Frankivsk, where I spent three good years and met many friends. Since 2020 I've lived and worked in Warsaw.",
+                "My name is Iryna. I come from Kalush (Ukraine), and my path in IT began in Ivano-Frankivsk, where I gained "
+                "hands-on experience and knowledge working with WordPress at SP//DEV and made many friends in the industry. "
+                "Since 2020 I have been living and working in Warsaw.",
                 "I've been doing web development for over 10 years. I work with WordPress on the frontend and backend: websites, web applications, and various integrations. I've delivered projects across education, e-commerce, and other digital products.",
                 "I love learning and discovering new things. I completed a Data Analytics course and I'm currently studying Project Management and UI/UX Design. I'm especially interested in AI-assisted programming — I experiment with tools like Cursor daily, and after hours I maintain two personal projects.",
             ],
             "facts": [
                 (
                     "Location",
-                    "Originally from Kalush, Ukraine; living in Warsaw since 2020 · on-site and hybrid, remote for clients worldwide",
+                    "Warsaw · on-site, hybrid & online",
                 ),
                 ("Languages", "Ukrainian — native\nPolish — fluent\nEnglish — intermediate"),
                 ("Education", "MEng, industrial and civil engineering — Lviv Polytechnic National University, 2008–2013"),
@@ -540,27 +557,38 @@ def t(lang: str) -> dict:
             "current_work_kicker": "Currently working on",
             "current_work_heading": "Redesign and migration of the ADN Akademia website",
             "current_work_lead": (
-                "I'm designing, building, and implementing on WordPress a new version of a major training company's website: "
-                "from information architecture and wireframes through purchasing courses in WooCommerce and registrations "
-                "flowing into the CRM. I'm also migrating all site content and creating Gutenberg blocks built on ACF. I use "
-                "Cursor and AI tools in my day-to-day work, which helps me deliver the project in about three weeks."
+                "I'm running the whole project on my own, from analysis through launch: I design, build, and implement on "
+                "WordPress a new version of a major training company's website. I use Cursor and AI tools in my work, which "
+                "helps me deliver the project in about three weeks."
             ),
-            "current_work_points": [
+            "current_work_steps": [
                 (
-                    "Information architecture and user journeys",
-                    "A new site map plus flows for purchasing, vouchers, and the customer account.",
+                    "Analysis",
+                    "The current site, content, user journeys, and the company's needs.",
                 ),
                 (
-                    "Wireframes in Figma",
-                    "More than 48 screens, including homepage, catalogue, course page, courses, conferences, cart, My account, and the mobile version.",
+                    "Information architecture",
+                    "A new site map and flows for purchasing, vouchers, and the customer account.",
                 ),
                 (
-                    "Purchases in WooCommerce",
-                    "Enrolment via the cart with a “Pay now” or “Reservation only” option; in the next phase, quick checkout and full order-status handling.",
+                    "Wireframes and design in Figma",
+                    "More than 48 screens, including homepage, catalogue, course page, cart, My account, and the mobile version.",
                 ),
                 (
-                    "Sign-ups and CRM integration",
-                    "Registration and B2B enquiry forms that pass submissions to the company's CRM.",
+                    "Development",
+                    "A custom theme and Gutenberg blocks built on ACF.",
+                ),
+                (
+                    "WooCommerce",
+                    "Cart checkout with “Pay now” or “Reservation only”; quick purchase in the next phase.",
+                ),
+                (
+                    "CRM integration",
+                    "Registration and B2B enquiry forms that pass submissions to the CRM.",
+                ),
+                (
+                    "Content migration and launch",
+                    "Migrating all site content and going live.",
                 ),
             ],
             "current_work_footer_before": (
@@ -582,7 +610,8 @@ def t(lang: str) -> dict:
             ),
             "contact_direct": "Write directly",
             "itcommunity": "Profile on IT.Community",
-            "footer_role": "Frontend / WordPress Developer · Warsaw",
+            "footer_role": "Frontend / WordPress Developer",
+            "footer_location": "Warsaw · on-site & online",
             "footer_copy": "© 2026 Iryna Bilous",
         }
     # Ukrainian
@@ -593,7 +622,7 @@ def t(lang: str) -> dict:
         "title": "Iryna Bilous — Frontend / WordPress Developer",
         "meta_description": (
             "Створюю сайти та інтернет-магазини на WordPress — власні теми, WooCommerce, інтеграції та доступність WCAG. "
-            "Варшава офлайн, віддалено — увесь світ. Портфоліо Ірини Білоус."
+            "Варшава · офлайн і онлайн. Портфоліо Ірини Білоус."
         ),
         "nav": [
             ("Про мене", "#o-mnie"),
@@ -608,7 +637,7 @@ def t(lang: str) -> dict:
         "lang_aria": "Мова сайту",
         "cta_write": "Напишіть мені",
         "cta_projects": "Переглянути реалізації",
-        "badge": "Frontend / WordPress Developer · Варшава офлайн, віддалено — увесь світ",
+        "badge": "Frontend / WordPress Developer · Варшава · офлайн і онлайн",
         "hello": "Привіт, я Ірина",
         "hero_h1": "Створюю сайти та інтернет-магазини на WordPress",
         "hero_lead": (
@@ -630,14 +659,16 @@ def t(lang: str) -> dict:
         "about_eyebrow": "Про мене",
         "about_title": "Від Калуша до Варшави — понад 10 років у веброзробці",
         "about_paras": [
-            "Мене звати Ірина. Я з Калуша, а мій шлях в ІТ почався в Івано-Франківську, де я провела три хороші роки й познайомилася з багатьма друзями. З 2020 року живу й працюю у Варшаві.",
+            "Мене звати Ірина. Я родом з Калуша (Україна), а мій шлях в IT почався в Івано-Франківську, "
+            "де в компанії SP//DEV я здобувала практику і знання, працюючи з WordPress, і знайшла багато друзів у галузі. "
+            "З 2020 року живу і працюю у Варшаві.",
             "Веброзробкою займаюся понад 10 років. Працюю з WordPress на фронтенді та бекенді: сайти, вебзастосунки та різні інтеграції. Реалізувала проєкти в освіті, e-commerce та інших цифрових продуктах.",
             "Люблю вчитися й відкривати нове. Завершила курс Data Analytics, зараз вивчаю Project Management і UI/UX Design. Особливо цікавить ШІ в програмуванні — щодня експериментую з інструментами на кшталт Cursor, а після роботи розвиваю два власні проєкти.",
         ],
         "facts": [
             (
                 "Локація",
-                "Походжу з Калуша (Україна), з 2020 року живу у Варшаві · офіс і гібрид, віддалено для клієнтів з усього світу",
+                "Варшава · офіс, гібрид і онлайн",
             ),
             ("Мови", "українська — рідна\nпольська — вільно\nанглійська — середній рівень"),
             ("Освіта", "Магістр, промислове та цивільне будівництво — Львівська політехніка, 2008–2013"),
@@ -771,27 +802,38 @@ def t(lang: str) -> dict:
         "current_work_kicker": "Зараз працюю над",
         "current_work_heading": "Редизайн і міграція сайту ADN Akademia",
         "current_work_lead": (
-            "Проєктую, кодую та впроваджую на WordPress нову версію сайту великої навчальної компанії: від інформаційної "
-            "архітектури й вайрфреймів до купівлі тренінгів у WooCommerce і записів, що потрапляють у CRM. Також переношу "
-            "весь контент сайту й створюю блоки Gutenberg на основі ACF. У роботі користуюся Cursor і ШІ-інструментами, що "
-            "дозволяє реалізувати проєкт приблизно за 3 тижні."
+            "Веду весь проєкт самостійно, від аналізу до запуску: нову версію сайту великої навчальної компанії проєктую, "
+            "кодую й впроваджую на WordPress. У роботі користуюся Cursor і ШІ-інструментами, що дозволяє реалізувати "
+            "проєкт приблизно за 3 тижні."
         ),
-        "current_work_points": [
+        "current_work_steps": [
             (
-                "Архітектура та користувацькі шляхи",
-                "Нова карта сайту та схеми покупки, ваучерів і облікового запису клієнта.",
+                "Аналіз",
+                "Поточний сайт, контент, користувацькі шляхи та потреби компанії.",
             ),
             (
-                "Вайрфрейми у Figma",
-                "Понад 48 макетів: головна, каталог, картка тренінгу, курси, конференції, кошик, Мій обліковий запис і мобільна версія.",
+                "Інформаційна архітектура",
+                "Нова карта сайту, схеми покупки, ваучерів і облікового запису клієнта.",
             ),
             (
-                "Покупки в WooCommerce",
-                "Запис через кошик з опцією «Сплатити зараз» або «Лише резервація»; наступним етапом — швидка покупка та повна обробка статусів замовлень.",
+                "Вайрфрейми та дизайн у Figma",
+                "Понад 48 макетів: головна, каталог, картка тренінгу, кошик, Мій обліковий запис і мобільна версія.",
             ),
             (
-                "Записи та інтеграція з CRM",
-                "Форми запису та B2B-запитів, що передають звернення в CRM компанії.",
+                "Кодування",
+                "Власна тема й блоки Gutenberg на основі ACF.",
+            ),
+            (
+                "WooCommerce",
+                "Кошик з опцією «Сплатити зараз» або «Лише резервація»; на наступному етапі — швидка покупка.",
+            ),
+            (
+                "Інтеграція з CRM",
+                "Форми запису та B2B-запитів, що передають звернення в CRM.",
+            ),
+            (
+                "Міграція контенту й запуск",
+                "Перенесення всього контенту сайту та публікація.",
             ),
         ],
         "current_work_footer_before": (
@@ -810,7 +852,8 @@ def t(lang: str) -> dict:
         "contact_p": "Плануєте новий сайт, магазин чи інтеграцію? Або потрібна підтримка наявного WordPress? Напишіть, що вам потрібно — відповім.",
         "contact_direct": "Напишіть напряму",
         "itcommunity": "Профіль на IT.Community",
-        "footer_role": "Frontend / WordPress Developer · Варшава",
+        "footer_role": "Frontend / WordPress Developer",
+        "footer_location": "Варшава · офлайн і онлайн",
         "footer_copy": "© 2026 Iryna Bilous",
     }
 
@@ -1017,11 +1060,16 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
         comp_items += f"""<article class="item"><div class="ico">{icon}</div>
           <div><h3>{e(title)}</h3><p>{e(desc)}</p></div></article>"""
 
-    current_work_points = ""
-    for i, (title, desc) in enumerate(copy["current_work_points"]):
-        icon = stroke_icon(CURRENT_WORK_ICON_KEYS[i], color=comp_icon_color(i), size=26)
-        current_work_points += f"""<article class="item"><div class="ico">{icon}</div>
-          <div><h3>{e(title)}</h3><p>{e(desc)}</p></div></article>"""
+    current_work_steps = ""
+    for i, (title, desc) in enumerate(copy["current_work_steps"], 1):
+        num = f"{i:02d}"
+        current_work_steps += f"""<li class="current-work-step">
+          <span class="step-num" aria-hidden="true">{num}</span>
+          <div class="step-body">
+            <h3 class="step-title">{e(title)}</h3>
+            <p class="step-desc">{e(desc)}</p>
+          </div>
+        </li>"""
 
     services = ""
     for i, (title, desc, when) in enumerate(copy["services"], 1):
@@ -1214,7 +1262,7 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
           <p class="current-work-kicker">{e(copy['current_work_kicker'])}</p>
           <h2 class="current-work-title" id="current-work-heading">{e(copy['current_work_heading'])}</h2>
           <p class="current-work-lead">{e(copy['current_work_lead'])}</p>
-          <div class="comp-list current-work-points">{current_work_points}</div>
+          <ol class="current-work-steps">{current_work_steps}</ol>
           <p class="current-work-footer">
             {e(copy['current_work_footer_before'])}
             <a href="{ADN_AKADEMIA_URL}" target="_blank" rel="noopener noreferrer">{e(copy['current_work_footer_link'])}</a>
@@ -1257,6 +1305,7 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
     <div class="container footer-inner">
       <p class="name">Iryna Bilous</p>
       <p class="meta">{e(copy['footer_role'])}</p>
+      <p class="meta">{e(copy['footer_location'])}</p>
       <motion class="footer-end">
         <p class="copy">{e(copy['footer_copy'])} · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
         <p class="copy footer-updated">{last_updated_footer_html(lang, last_updated)}</p>
