@@ -42,6 +42,7 @@ async function testMobile({ path: pagePath, slug, cta }) {
     const w = document.querySelector("[data-nav-mobile]");
     return w && !w.hasAttribute("hidden") && w.classList.contains("is-open");
   });
+  await page.waitForTimeout(500);
 
   const panelBox = await page.locator(".nav-mobile-panel").boundingBox();
   assert(panelBox, "panel should have layout box");
@@ -51,11 +52,15 @@ async function testMobile({ path: pagePath, slug, cta }) {
   const navLinks = page.locator(".nav-mobile a");
   assert.equal(await navLinks.count(), 5, "five nav links");
   assert.ok(await page.locator(".nav-mobile-cta").isVisible());
-  assert.ok((await page.locator(".lang-switch--menu").textContent())?.includes("PL"));
+  assert.equal(await page.locator(".nav-mobile-footer .lang-switch").count(), 0);
+  assert.ok(await page.locator(".site-header .lang-switch").isVisible());
 
   await page.screenshot({
     path: `${ARTIFACTS}/menu-open-${slug}-390.png`,
     fullPage: false,
+  });
+  await page.locator("[data-menu-toggle]").screenshot({
+    path: `${ARTIFACTS}/menu-toggle-x-${slug}-390.png`,
   });
 
   await page.locator(".nav-mobile a").first().tap();

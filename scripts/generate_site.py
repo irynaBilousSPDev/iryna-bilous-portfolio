@@ -1164,7 +1164,6 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
     <div class="nav-mobile-panel">
       <nav class="nav-mobile" aria-label="{e(copy['nav_aria'])} mobile">{nav_mobile}</nav>
       <div class="nav-mobile-footer">
-        <nav aria-label="{e(copy['lang_aria'])}"><ul class="lang-switch lang-switch--menu">{lang_links}</ul></nav>
         <a class="btn btn--primary nav-mobile-cta" href="#kontakt">{e(copy['cta_write'])}</a>
       </div>
     </div>
