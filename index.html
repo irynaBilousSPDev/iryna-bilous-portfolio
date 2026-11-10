@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Syne:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css?v=f8f017335e">
+  <link rel="stylesheet" href="assets/css/main.css?v=0e846034cc">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -26,12 +26,21 @@
         <nav aria-label="Język strony"><ul class="lang-switch"><span aria-current="page">PL</span><a href="en/" hreflang="en" lang="en">EN</a><a href="ua/" hreflang="uk" lang="uk">UA</a></ul></nav>
         <a class="btn btn--primary btn-header" href="#kontakt">Napisz do mnie</a>
         <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="nav-mobile" data-menu-toggle>
-          <span class="sr-only">Otwórz menu</span>
+          <span class="sr-only" data-open="Otwórz menu" data-close="Zamknij menu">Otwórz menu</span>
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
-    <nav class="nav-mobile container" id="nav-mobile" aria-label="Główne mobile"><a href="#o-mnie">O mnie</a><a href="#kompetencje">Kompetencje</a><a href="#uslugi">Usługi</a><a href="#doswiadczenie">Doświadczenie</a><a href="#realizacje">Realizacje</a></nav>
+    <div class="nav-mobile-wrap" id="nav-mobile" data-nav-mobile hidden>
+      <button type="button" class="nav-mobile-backdrop" data-menu-backdrop aria-label="Zamknij menu"></button>
+      <div class="nav-mobile-panel">
+        <nav class="nav-mobile" aria-label="Główne mobile"><a href="#o-mnie">O mnie</a><a href="#kompetencje">Kompetencje</a><a href="#uslugi">Usługi</a><a href="#doswiadczenie">Doświadczenie</a><a href="#realizacje">Realizacje</a></nav>
+        <div class="nav-mobile-footer">
+          <nav aria-label="Język strony"><ul class="lang-switch lang-switch--menu"><span aria-current="page">PL</span><a href="en/" hreflang="en" lang="en">EN</a><a href="ua/" hreflang="uk" lang="uk">UA</a></ul></nav>
+          <a class="btn btn--primary nav-mobile-cta" href="#kontakt">Napisz do mnie</a>
+        </div>
+      </div>
+    </div>
   </header>
   <main id="main">
     <section class="section section--hero" id="hero" aria-labelledby="hero-title">
