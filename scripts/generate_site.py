@@ -356,6 +356,7 @@ def t(lang: str) -> dict:
                 "Moje doświadczenie obejmuje też inne realizacje, które nie są już dostępne lub zostały później zmienione albo przeprojektowane."
             ),
             "project_ext": "Otwiera się w nowej karcie",
+            "project_more": "Więcej ▾",
             "contact_eyebrow": "Kontakt",
             "contact_h2": "Porozmawiajmy o Twojej stronie",
             "contact_p": (
@@ -604,6 +605,7 @@ def t(lang: str) -> dict:
                 "My experience also includes other projects that are no longer available or were later changed or redesigned."
             ),
             "project_ext": "Opens in a new tab",
+            "project_more": "More ▾",
             "contact_eyebrow": "Contact",
             "contact_h2": "Let's talk about your website",
             "contact_p": pl["contact_p"].replace(
@@ -849,6 +851,7 @@ def t(lang: str) -> dict:
             "Мій досвід також охоплює інші реалізації, які вже недоступні або були пізніше змінені чи перероблені."
         ),
         "project_ext": "Відкривається в новій вкладці",
+        "project_more": "Більше ▾",
         "contact_eyebrow": "Контакт",
         "contact_h2": "Поговорімо про ваш сайт",
         "contact_p": "Плануєте новий сайт, магазин чи інтеграцію? Або потрібна підтримка наявного WordPress? Напишіть, що вам потрібно — відповім.",
@@ -976,6 +979,15 @@ def card_note_label(note: str | None, lang: str) -> str | None:
     return CARD_NOTE_I18N.get(note, {}).get(lang if lang != "ua" else "ua")
 
 
+def project_note_text(project: dict, lang: str) -> str | None:
+    note = project.get("note")
+    if not note:
+        return None
+    if isinstance(note, dict):
+        return note.get(lang if lang != "ua" else "ua") or note.get("pl")
+    return str(note)
+
+
 def gallery_html(lang: str, ap: str, copy: dict) -> str:
     chunks = []
     for period in ("avista", "vizja", "spdev"):
@@ -987,24 +999,42 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
             host = e(p["host"])
             url = e(p["url"])
             team = team_label(p.get("team"), lang)
-            note = card_note_label(p.get("card_note"), lang)
+            badge_note = card_note_label(p.get("card_note"), lang)
+            desc_note = project_note_text(p, lang)
             badge_html = ""
             if team:
                 badge_html += f'<span class="team">{e(team)}</span>'
-            if note:
-                badge_html += f'<span class="team">{e(note)}</span>'
+            if badge_note:
+                badge_html += f'<span class="team">{e(badge_note)}</span>'
+            foot_html = ""
+            if desc_note or badge_html:
+                foot_bits = []
+                if desc_note:
+                    foot_bits.append(
+                        f'<details class="card-details">'
+                        f'<summary class="card-details__toggle">{e(copy["project_more"])}</summary>'
+                        f'<p class="card-note">{e(desc_note)}</p>'
+                        f"</details>"
+                    )
+                if badge_html:
+                    foot_bits.append(f'<div class="project-card__badges">{badge_html}</div>')
+                foot_html = f'<div class="project-card__foot">{"".join(foot_bits)}</div>'
+            mod = " project-card--has-more" if desc_note else ""
             alt = e(f'{p["title"]} — podgląd strony {p["host"]}' if lang == 'pl' else (
                 f'{p["title"]} — preview of {p["host"]}' if lang == 'en' else f'{p["title"]} — перегляд {p["host"]}'
             ))
             chunks.append(
-                f'<a class="project-card" href="{url}" target="_blank" rel="noopener noreferrer">'
+                f'<article class="project-card{mod}">'
+                f'<a class="project-card__link" href="{url}" target="_blank" rel="noopener noreferrer">'
                 f'<motion aria-hidden="true" class="thumb">'
                 f'<img src="{thumb}" alt="{alt}" width="640" height="357" loading="lazy" decoding="async">'
                 f"</motion>"
                 f"<h3>{title}</h3>"
-                f'<p class="host">{host}</p>{badge_html}'
+                f'<p class="host">{host}</p>'
                 f'<span class="sr-only"> — {e(copy["project_ext"])}</span>'
                 f"</a>"
+                f"{foot_html}"
+                f"</article>"
             )
         chunks.append("</div>")
     return "\n".join(chunks).replace("<motion", "<div").replace("</motion>", "</div>")

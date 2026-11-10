@@ -8,6 +8,7 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -73,6 +74,14 @@ a {
   background: rgba($sky, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid transparent;
+
+  html.is-menu-open & {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 110;
+  }
 
   &.is-scrolled {
     border-bottom-color: $line;
@@ -350,6 +359,7 @@ body.is-menu-open {
   position: fixed;
   inset: 0;
   z-index: 90;
+  width: 100%;
   margin: 0;
   padding: 0;
   border: none;
@@ -364,6 +374,8 @@ body.is-menu-open {
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   padding: 8px 20px 28px;
@@ -600,6 +612,10 @@ body.is-menu-open {
 .hero-portrait {
   position: relative;
 
+  @media (max-width: 899px) {
+    margin-bottom: 4px;
+  }
+
   .frame {
     background: $white;
     border-radius: 24px;
@@ -677,6 +693,12 @@ body.is-menu-open {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  margin-top: 20px;
+
+  @media (max-width: 430px) {
+    gap: 10px;
+    margin-top: 16px;
+  }
 
   @media (min-width: 900px) {
     grid-template-columns: repeat(4, 1fr);
@@ -686,6 +708,7 @@ body.is-menu-open {
 }
 
 .proof-card {
+  container-type: inline-size;
   background: $white;
   border-radius: $radius-md;
   padding: 14px 16px;
@@ -709,6 +732,11 @@ body.is-menu-open {
     display: grid;
     place-items: center;
 
+    .ui-icon {
+      width: 22px;
+      height: 22px;
+    }
+
     &--sky {
       background: $sky;
     }
@@ -725,6 +753,36 @@ body.is-menu-open {
     font-weight: 700;
     color: $ink;
     line-height: 1.1;
+    min-width: 0;
+
+    @media (max-width: 379px) {
+      white-space: nowrap;
+      font-size: clamp(1.25rem, 0.65rem + 7cqi, 1.875rem);
+    }
+
+    @media (min-width: 380px) and (max-width: 899px) {
+      white-space: nowrap;
+      font-size: clamp(1.375rem, 0.55rem + 7.25cqi, 1.875rem);
+    }
+  }
+
+  @media (max-width: 430px) {
+    padding: 12px 9px;
+
+    .proof-head {
+      gap: 10px;
+    }
+
+    .proof-tile {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+
+      .ui-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
   }
 
   .label {
@@ -1301,6 +1359,7 @@ body.is-menu-open {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  align-items: stretch;
 
   @media (min-width: 900px) {
     grid-template-columns: repeat(4, 1fr);
@@ -1309,24 +1368,60 @@ body.is-menu-open {
 }
 
 .project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  text-decoration: none;
-  color: inherit;
+  height: 100%;
   border-radius: 14px;
-  overflow: hidden;
 
-  &:hover {
-    text-decoration: none;
-
-    .thumb img {
-      transform: scale(1.02);
+  &--has-more {
+    .project-card__foot {
+      min-height: 1.75rem;
     }
   }
 
-  &:focus-visible {
-    outline: 2px solid $navy;
-    outline-offset: 4px;
+  &__link {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    text-decoration: none;
+    color: inherit;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: 14px;
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      .thumb img {
+        transform: scale(1.02);
+      }
+    }
+
+    &:focus-visible {
+      outline: none;
+
+      &::after {
+        outline: 2px solid $navy;
+        outline-offset: 4px;
+      }
+    }
+  }
+
+  &__foot {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    padding-top: 2px;
+  }
+
+  &__badges {
+    margin-top: 8px;
   }
 
   .thumb {
@@ -1358,9 +1453,51 @@ body.is-menu-open {
     word-break: break-word;
   }
 
+  .card-details {
+    margin: 4px 0 0;
+
+    &__toggle {
+      display: inline-block;
+      cursor: pointer;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: $muted;
+      list-style: none;
+      padding: 4px 2px;
+      border-radius: 4px;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::marker {
+        content: "";
+      }
+
+      &:hover {
+        color: $ink;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $navy;
+        outline-offset: 2px;
+      }
+    }
+
+    &[open] .card-details__toggle {
+      color: $ink;
+    }
+  }
+
+  .card-note {
+    margin: 6px 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $muted;
+  }
+
   .team {
     display: inline-block;
-    margin-top: 10px;
     padding: 4px 10px;
     background: $pink-soft;
     color: $pink;

@@ -7,6 +7,11 @@
       "url": "https://akademiata.pl/",
       "host": "akademiata.pl",
       "team": null,
+      "note": {
+        "pl": "Obecnie: ciągła praca nad stronami i rozbudowa oferty w ścisłej współpracy z marketingiem",
+        "en": "Currently: ongoing work on the websites and expanding the offer in close collaboration with marketing",
+        "ua": "Зараз: постійна робота над сайтами та розширення оферти в тісній співпраці з маркетингом"
+      },
       "period": "avista"
     },
     {
@@ -82,6 +87,11 @@
       "url": "https://vizja.pl/",
       "host": "vizja.pl",
       "team": "Projekt zespołowy",
+      "note": {
+        "pl": "Ciągła praca nad stronami i rozbudowa oferty w ścisłej współpracy z marketingiem",
+        "en": "Ongoing work on the websites and expanding the offer in close collaboration with marketing",
+        "ua": "Постійна робота над сайтами та розширення оферти в тісній співпраці з маркетингом"
+      },
       "period": "vizja"
     },
     {
