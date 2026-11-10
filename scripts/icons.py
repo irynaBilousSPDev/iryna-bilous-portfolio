@@ -15,7 +15,11 @@ IC = {
     "globe": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/>',
     "cap": '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3.3 2.6 8.7 2.6 12 0v-5"/>',
     "mountain": '<path d="M3 20l6.5-11 4 6.5 2-3L21 20z"/>',
+    "cart": '<path d="M3 4h2.2l2.4 11h10.6l2-7.8H6.4"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/>',
+    "box": '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>',
 }
+
+CURRENT_WORK_ICON_KEYS = ["network", "box", "cart", "link"]
 
 COMP_ICON_KEYS = [
     "network",
