@@ -17,7 +17,11 @@ IC = {
     "mountain": '<path d="M3 20l6.5-11 4 6.5 2-3L21 20z"/>',
     "cart": '<path d="M3 4h2.2l2.4 11h10.6l2-7.8H6.4"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/>',
     "box": '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>',
+    "briefcase": '<rect x="4" y="8" width="16" height="11" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><path d="M4 13h16"/>',
+    "award": '<circle cx="12" cy="9.5" r="4"/><path d="M8.2 14.2 7 20.5l5-2.8 5 2.8-1.2-6.3"/>',
 }
+
+PROOF_ICON_KEYS = ["briefcase", "cart", "award", "box"]
 
 CURRENT_WORK_ICON_KEYS = ["network", "box", "cart", "link"]
 

@@ -677,49 +677,57 @@ body.is-menu-open {
 .proof-card {
   background: $white;
   border-radius: $radius-md;
-  padding: 16px;
+  padding: 14px 16px;
 
   @media (min-width: 900px) {
-    padding: 24px;
-    min-height: 128px;
+    padding: 18px 20px;
+  }
+
+  .proof-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+
+  .proof-tile {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+
+    &--sky {
+      background: mix($white, $sky, 45%);
+    }
+
+    &--pink {
+      background: $pink-soft;
+    }
   }
 
   .num {
+    margin: 0;
     font-family: $font-heading;
-    font-size: 1.75rem;
+    font-size: clamp(1.375rem, 4vw, 1.875rem);
     font-weight: 700;
-    color: $blue;
-    margin-bottom: 4px;
-
-    @media (min-width: 900px) {
-      font-size: 1.875rem;
-      color: $ink;
-    }
+    color: $ink;
+    line-height: 1.1;
   }
 
   .label {
     font-weight: 600;
     font-size: 1rem;
     margin: 0 0 4px;
+    line-height: 1.3;
   }
 
   .sub {
     margin: 0;
     font-size: 0.875rem;
     color: $muted;
-  }
-
-  .icon-box {
-    display: none;
-
-    @media (min-width: 900px) {
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      border-radius: $radius-sm;
-      margin-bottom: 12px;
-    }
+    line-height: 1.4;
   }
 }
 
