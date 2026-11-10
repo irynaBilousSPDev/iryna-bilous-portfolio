@@ -4,7 +4,17 @@ from __future__ import annotations
 
 import html
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from icons import (  # noqa: E402
+    COMP_ICON_KEYS,
+    FACT_ICON_KEYS,
+    PINK,
+    comp_icon_color,
+    stroke_icon,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://irynabilousspdev.github.io/iryna-bilous-portfolio"
@@ -746,15 +756,18 @@ def page(lang: str) -> str:
         about_paras += f'<p class="{cls}">{e(p)}</p>'
 
     facts = ""
-    for label, val in copy["facts"]:
-        facts += f"""<motion class="fact"><div class="ico" aria-hidden="true">●</div>
-          <motion><p class="label">{e(label)}</p>
-          <p class="value">{e(val).replace(chr(10), "<br>")}</p></div></motion>"""
+    for fi, (label, val) in enumerate(copy["facts"]):
+        icon = stroke_icon(FACT_ICON_KEYS[fi], color=PINK, size=22)
+        wide = " fact--wide" if FACT_ICON_KEYS[fi] == "globe" else ""
+        facts += f"""<article class="fact{wide}"><div class="ico">{icon}</div>
+          <div><p class="label">{e(label)}</p>
+          <p class="value">{e(val).replace(chr(10), "<br>")}</p></div></article>"""
 
     comp_items = ""
-    for title, desc in copy["comp_items"]:
-        comp_items += f"""<article class="item"><div class="ico" aria-hidden="true">◆</div>
-          <motion><h3>{e(title)}</h3><p>{e(desc)}</p></motion></article>"""
+    for i, (title, desc) in enumerate(copy["comp_items"]):
+        icon = stroke_icon(COMP_ICON_KEYS[i], color=comp_icon_color(i), size=26)
+        comp_items += f"""<article class="item"><div class="ico">{icon}</div>
+          <div><h3>{e(title)}</h3><p>{e(desc)}</p></div></article>"""
 
     services = ""
     for i, (title, desc, when) in enumerate(copy["services"], 1):
@@ -875,10 +888,10 @@ def page(lang: str) -> str:
       <div class="container">
         <span class="eyebrow">{e(copy['about_eyebrow'])}</span>
         <h2 class="section-title" id="about-title">{e(copy['about_title'])}</h2>
-        <motion class="about-grid" style="margin-top:32px">
-          <motion>{about_paras}</motion>
+        <div class="about-grid">
+          <div class="about-copy">{about_paras}</div>
           <aside class="facts-panel" aria-label="Facts">{facts}</aside>
-        </motion>
+        </div>
       </div>
     </section>
 
@@ -887,7 +900,7 @@ def page(lang: str) -> str:
         <span class="eyebrow">{e(copy['comp_eyebrow'])}</span>
         <h2 class="section-title" id="comp-title">{e(copy['comp_title'])}</h2>
         <p class="section-intro">{e(copy['comp_intro'])}</p>
-        <div class="comp-list" style="margin-top:40px">{comp_items}</div>
+        <div class="comp-list">{comp_items}</div>
       </div>
     </section>
 
