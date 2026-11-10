@@ -23,17 +23,18 @@
       "host": "unixedu.com",
       "team": null,
       "period": "avista"
-    }
-  ],
-  "vizja": [
+    },
     {
       "id": "online.ilcentres.com",
       "title": "IL Centres Online",
       "url": "https://online.ilcentres.com/",
       "host": "online.ilcentres.com",
       "team": null,
-      "period": "vizja"
-    },
+      "card_note": "not_launched",
+      "period": "avista"
+    }
+  ],
+  "vizja": [
     {
       "id": "tevizja.pl",
       "title": "Te Vizja",
@@ -63,7 +64,7 @@
       "title": "Poradnia Te Vizja",
       "url": "https://poradnia.tevizja.pl/",
       "host": "poradnia.tevizja.pl",
-      "team": "Wspólnie z Agnieszką",
+      "team": "Projekt zespołowy",
       "period": "vizja"
     },
     {
@@ -79,7 +80,7 @@
       "title": "Uniwersytet VIZJA",
       "url": "https://vizja.pl/",
       "host": "vizja.pl",
-      "team": "Wspólnie z Agnieszką",
+      "team": "Projekt zespołowy",
       "period": "vizja"
     },
     {

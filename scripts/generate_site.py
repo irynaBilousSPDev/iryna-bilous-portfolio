@@ -654,8 +654,15 @@ def page_paths(lang: str) -> dict[str, str]:
 
 
 TEAM_I18N = {
-    "Wspólnie z Agnieszką": {"en": "Together with Agnieszka", "ua": "Разом з Агнєшкою"},
     "Projekt zespołowy": {"en": "Team project", "ua": "Командний проєкт"},
+}
+
+CARD_NOTE_I18N = {
+    "not_launched": {
+        "pl": "Projekt nie wystartował",
+        "en": "Project not launched",
+        "ua": "Проєкт не запущено",
+    },
 }
 
 
@@ -665,6 +672,12 @@ def team_label(team: str | None, lang: str) -> str | None:
     if lang == "pl":
         return team
     return TEAM_I18N.get(team, {}).get(lang, team)
+
+
+def card_note_label(note: str | None, lang: str) -> str | None:
+    if not note:
+        return None
+    return CARD_NOTE_I18N.get(note, {}).get(lang if lang != "ua" else "ua")
 
 
 def gallery_html(lang: str, ap: str, copy: dict) -> str:
@@ -677,8 +690,13 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
             title = e(p["title"])
             host = e(p["host"])
             url = e(p["url"])
-            team = team_label(p.get("team"), lang if lang != "pl" else "pl")
-            team_html = f'<span class="team">{e(team)}</span>' if team else ""
+            team = team_label(p.get("team"), lang)
+            note = card_note_label(p.get("card_note"), lang)
+            badge_html = ""
+            if team:
+                badge_html += f'<span class="team">{e(team)}</span>'
+            if note:
+                badge_html += f'<span class="team">{e(note)}</span>'
             alt = e(f'{p["title"]} — podgląd strony {p["host"]}' if lang == 'pl' else (
                 f'{p["title"]} — preview of {p["host"]}' if lang == 'en' else f'{p["title"]} — перегляд {p["host"]}'
             ))
@@ -688,7 +706,7 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
                 f'<img src="{thumb}" alt="{alt}" width="640" height="357" loading="lazy" decoding="async">'
                 f"</motion>"
                 f"<h3>{title}</h3>"
-                f'<p class="host">{host}</p>{team_html}'
+                f'<p class="host">{host}</p>{badge_html}'
                 f'<span class="sr-only"> — {e(copy["project_ext"])}</span>'
                 f"</a>"
             )
