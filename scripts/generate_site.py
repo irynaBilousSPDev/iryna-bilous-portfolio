@@ -71,7 +71,7 @@ def t(lang: str) -> dict:
             "lang_aria": "Język strony",
             "cta_write": "Napisz do mnie",
             "cta_projects": "Zobacz realizacje",
-            "badge": "Frontend / WordPress Developer · Warszawa",
+            "badge": "Frontend / WordPress Developer · Warszawa stacjonarnie, zdalnie cały świat",
             "hello": "Cześć, jestem Iryna",
             "hero_h1": "Tworzę strony i sklepy na WordPressie",
             "hero_lead": (
@@ -103,7 +103,10 @@ def t(lang: str) -> dict:
                 "Cursorem, a po godzinach rozwijam dwa własne projekty.",
             ],
             "facts": [
-                ("Lokalizacja", "Warszawa, od 2020 roku · praca hybrydowa"),
+                (
+                    "Lokalizacja",
+                    "Pochodzę z Kałusza (Ukraina), od 2020 roku mieszkam w Warszawie · stacjonarnie i hybrydowo, zdalnie dla klientów z całego świata",
+                ),
                 ("Języki", "ukraiński — ojczysty\npolski — biegły\nangielski — średniozaawansowany"),
                 ("Wykształcenie", "Magister, budownictwo przemysłowe i cywilne — Politechnika Lwowska, 2008–2013"),
                 ("Poza pracą", "Góry, rower, boks, podróże i surfing w ciepłych krajach. W domu czekają na mnie dwa koty."),
@@ -250,8 +253,10 @@ def t(lang: str) -> dict:
             "current_work_kicker": "Obecnie pracuję nad",
             "current_work_heading": "Redesign i migracja serwisu ADN Akademia",
             "current_work_lead": (
-                "Projektuję i koduję nową wersję serwisu dużej firmy szkoleniowej, od architektury informacji "
-                "i wireframe’ów po zakup szkoleń w WooCommerce oraz zapisy trafiające do CRM."
+                "Projektuję, koduję i wdrażam na WordPressie nową wersję serwisu dużej firmy szkoleniowej: od architektury "
+                "informacji i wireframe’ów po zakup szkoleń w WooCommerce i zapisy trafiające do CRM. Przenoszę też całą "
+                "treść serwisu i tworzę bloki Gutenberga oparte na ACF. Przy pracy korzystam z Cursora i narzędzi AI, co "
+                "pozwala mi zrealizować projekt w około 3 tygodnie."
             ),
             "current_work_points": [
                 (
@@ -281,7 +286,7 @@ def t(lang: str) -> dict:
                 "Realizacje, które kodowałam samodzielnie lub wspólnie z zespołem. Przy projektach zespołowych znajdziesz odpowiednie oznaczenie."
             ),
             "work_note": (
-                "Moje doświadczenie obejmuje również starsze realizacje, które nie są już dostępne lub zostały później przeprojektowane."
+                "Moje doświadczenie obejmuje też inne realizacje, które nie są już dostępne lub zostały później zmienione albo przeprojektowane."
             ),
             "project_ext": "Otwiera się w nowej karcie",
             "contact_eyebrow": "Kontakt",
@@ -301,7 +306,10 @@ def t(lang: str) -> dict:
             **pl,
             "html_lang": "en",
             "title": "Iryna Bilous — Frontend / WordPress Developer",
-            "meta_description": "I build WordPress websites and WooCommerce stores — custom themes, integrations, and WCAG accessibility. Portfolio of Iryna Bilous, Warsaw.",
+            "meta_description": (
+                "I build WordPress websites and WooCommerce stores — custom themes, integrations, and WCAG accessibility. "
+                "On-site in Warsaw, remote worldwide. Portfolio of Iryna Bilous."
+            ),
             "nav": [
                 ("About", "#o-mnie"),
                 ("Skills", "#kompetencje"),
@@ -315,7 +323,7 @@ def t(lang: str) -> dict:
             "lang_aria": "Site language",
             "cta_write": "Get in touch",
             "cta_projects": "View projects",
-            "badge": "Frontend / WordPress Developer · Warsaw",
+            "badge": "Frontend / WordPress Developer · On-site in Warsaw, remote worldwide",
             "hello": "Hi, I'm Iryna",
             "hero_h1": "I build WordPress websites and online stores",
             "hero_lead": (
@@ -342,7 +350,10 @@ def t(lang: str) -> dict:
                 "I love learning and discovering new things. I completed a Data Analytics course and I'm currently studying Project Management and UI/UX Design. I'm especially interested in AI-assisted programming — I experiment with tools like Cursor daily, and after hours I maintain two personal projects.",
             ],
             "facts": [
-                ("Location", "Warsaw, since 2020 · hybrid work"),
+                (
+                    "Location",
+                    "Originally from Kalush, Ukraine; living in Warsaw since 2020 · on-site and hybrid, remote for clients worldwide",
+                ),
                 ("Languages", "Ukrainian — native\nPolish — fluent\nEnglish — intermediate"),
                 ("Education", "MEng, industrial and civil engineering — Lviv Polytechnic National University, 2008–2013"),
                 ("Outside work", "Mountains, cycling, boxing, travel, and surfing in warm countries. Two cats are waiting for me at home."),
@@ -366,7 +377,7 @@ def t(lang: str) -> dict:
             "serv_eyebrow": "Services",
             "serv_title": "How I can help",
             "serv_intro": "I work with companies, universities, and online stores — on new sites and on growing existing ones.",
-            "serv_when": "When it helps",
+            "serv_when": "When it’s a good fit",
             "services": [
                 (
                     "Custom WordPress theme",
@@ -478,8 +489,10 @@ def t(lang: str) -> dict:
             "current_work_kicker": "Currently working on",
             "current_work_heading": "Redesign and migration of the ADN Akademia website",
             "current_work_lead": (
-                "I'm designing and building a new version of a major training company's website — from information "
-                "architecture and wireframes to purchasing courses in WooCommerce and registrations flowing into the CRM."
+                "I'm designing, building, and implementing on WordPress a new version of a major training company's website: "
+                "from information architecture and wireframes through purchasing courses in WooCommerce and registrations "
+                "flowing into the CRM. I'm also migrating all site content and creating Gutenberg blocks built on ACF. I use "
+                "Cursor and AI tools in my day-to-day work, which helps me deliver the project in about three weeks."
             ),
             "current_work_points": [
                 (
@@ -506,9 +519,8 @@ def t(lang: str) -> dict:
             "work_eyebrow": "Projects",
             "work_title": "Sites I've worked on",
             "work_intro": "Projects I coded independently or with a team. Team projects are labelled accordingly.",
-            "work_note": pl["work_note"].replace(
-                "Moje doświadczenie obejmuje również starsze realizacje, które nie są już dostępne lub zostały później przeprojektowane.",
-                "My experience also includes older projects that are no longer online or were redesigned later.",
+            "work_note": (
+                "My experience also includes other projects that are no longer available or were later changed or redesigned."
             ),
             "project_ext": "Opens in a new tab",
             "contact_eyebrow": "Contact",
@@ -528,7 +540,10 @@ def t(lang: str) -> dict:
         **pl,
         "html_lang": "uk",
         "title": "Iryna Bilous — Frontend / WordPress Developer",
-        "meta_description": "Створюю сайти та інтернет-магазини на WordPress — власні теми, WooCommerce, інтеграції та доступність WCAG. Портфоліо Ірини Білоус, Варшава.",
+        "meta_description": (
+            "Створюю сайти та інтернет-магазини на WordPress — власні теми, WooCommerce, інтеграції та доступність WCAG. "
+            "Варшава офлайн, віддалено — увесь світ. Портфоліо Ірини Білоус."
+        ),
         "nav": [
             ("Про мене", "#o-mnie"),
             ("Компетенції", "#kompetencje"),
@@ -542,7 +557,7 @@ def t(lang: str) -> dict:
         "lang_aria": "Мова сайту",
         "cta_write": "Напишіть мені",
         "cta_projects": "Переглянути реалізації",
-        "badge": "Frontend / WordPress Developer · Варшава",
+        "badge": "Frontend / WordPress Developer · Варшава офлайн, віддалено — увесь світ",
         "hello": "Привіт, я Ірина",
         "hero_h1": "Створюю сайти та інтернет-магазини на WordPress",
         "hero_lead": (
@@ -569,7 +584,10 @@ def t(lang: str) -> dict:
             "Люблю вчитися й відкривати нове. Завершила курс Data Analytics, зараз вивчаю Project Management і UI/UX Design. Особливо цікавить ШІ в програмуванні — щодня експериментую з інструментами на кшталт Cursor, а після роботи розвиваю два власні проєкти.",
         ],
         "facts": [
-            ("Локація", "Варшава, з 2020 року · гібридна робота"),
+            (
+                "Локація",
+                "Походжу з Калуша (Україна), з 2020 року живу у Варшаві · офіс і гібрид, віддалено для клієнтів з усього світу",
+            ),
             ("Мови", "українська — рідна\nпольська — вільно\nанглійська — середній рівень"),
             ("Освіта", "Магістр, промислове та цивільне будівництво — Львівська політехніка, 2008–2013"),
             ("Поза роботою", "Гори, велосипед, бокс, подорожі та серфінг у теплих країнах. Вдома чекають два коти."),
@@ -580,9 +598,9 @@ def t(lang: str) -> dict:
         "comp_items": [
             ("Великі вебекосистеми", "WordPress Multisite, багатомовність, e-commerce, освіта"),
             ("Автоматизація та інтеграції", "WooCommerce, платіжні системи, InPost, API та автоматизація"),
-            ("AI-assisted development", "Cursor і ШІ-інструменти — швидша розробка та експерименти"),
-            ("Product thinking і автоматизація", "Бізнес-аналіз, продуктова логіка, Trello, автоматизація процесів"),
-            ("WordPress Engineering", "Gutenberg, ACF, CPT, PHP, JavaScript, SCSS, власні теми"),
+            ("Розробка з підтримкою ШІ", "Cursor і ШІ-інструменти — швидша розробка та експерименти"),
+            ("Продуктове мислення та автоматизація", "Бізнес-аналіз, продуктова логіка, Trello, автоматизація процесів"),
+            ("Інженерія WordPress", "Gutenberg, ACF, CPT, PHP, JavaScript, SCSS, власні теми"),
             ("Маркетинг і розвиток продукту", "Акції, пропозиції, калькулятори, UX і маркетингові сценарії"),
             ("Координація та бізнес-аналіз", "Робота з командою, Trello, аналіз вимог, планування"),
             ("QA та технічні операції", "Тести, WCAG, SEO, Git, Plesk, технічні аудити"),
@@ -702,8 +720,10 @@ def t(lang: str) -> dict:
         "current_work_kicker": "Зараз працюю над",
         "current_work_heading": "Редизайн і міграція сайту ADN Akademia",
         "current_work_lead": (
-            "Проєктую та кодую нову версію сайту великої навчальної компанії — від інформаційної архітектури "
-            "і вайрфреймів до купівлі тренінгів у WooCommerce і записів, що потрапляють у CRM."
+            "Проєктую, кодую та впроваджую на WordPress нову версію сайту великої навчальної компанії: від інформаційної "
+            "архітектури й вайрфреймів до купівлі тренінгів у WooCommerce і записів, що потрапляють у CRM. Також переношу "
+            "весь контент сайту й створюю блоки Gutenberg на основі ACF. У роботі користуюся Cursor і ШІ-інструментами, що "
+            "дозволяє реалізувати проєкт приблизно за 3 тижні."
         ),
         "current_work_points": [
             (
@@ -730,7 +750,9 @@ def t(lang: str) -> dict:
         "work_eyebrow": "Реалізації",
         "work_title": "Сайти, над якими працювала",
         "work_intro": "Реалізації, які кодувала самостійно або з командою. Командні проєкти позначені відповідно.",
-        "work_note": "Мій досвід також охоплює старіші реалізації, які вже недоступні або пізніше були переосмислені.",
+        "work_note": (
+            "Мій досвід також охоплює інші реалізації, які вже недоступні або були пізніше змінені чи перероблені."
+        ),
         "project_ext": "Відкривається в новій вкладці",
         "contact_eyebrow": "Контакт",
         "contact_h2": "Поговорімо про ваш сайт",

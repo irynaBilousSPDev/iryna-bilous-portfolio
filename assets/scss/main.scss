@@ -655,6 +655,7 @@ a {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 12px;
+    align-items: stretch;
 
     @media (min-width: 768px) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -669,6 +670,7 @@ a {
 
   .fact {
     min-width: 0;
+    height: 100%;
     background: $tint;
     border-radius: $radius-md;
     padding: 16px;
