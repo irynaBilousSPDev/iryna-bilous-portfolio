@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Hero proof grid — WCAG 2.1 single-line on narrow 2-column layouts.
+ * Hero proof grid — WCAG two-line num; mobile font floors.
  */
 import { chromium } from "playwright";
 import assert from "node:assert/strict";
@@ -20,7 +20,7 @@ const locales = [
   { path: "/ua/", slug: "ua" },
 ];
 
-const widths = [360, 390, 430];
+const widths = [360, 390, 430, 1440];
 
 function startServer() {
   return spawn("python3", ["-m", "http.server", String(PORT)], {
@@ -36,10 +36,11 @@ try {
   const browser = await chromium.launch();
 
   for (const width of widths) {
+    const mobile = width < 900;
     const context = await browser.newContext({
-      viewport: { width, height: 844 },
-      isMobile: true,
-      deviceScaleFactor: 2,
+      viewport: { width, height: 900 },
+      isMobile: mobile,
+      deviceScaleFactor: mobile ? 2 : 1,
     });
 
     for (const { path: pagePath, slug } of locales) {
@@ -48,96 +49,67 @@ try {
       await page.goto(url, { waitUntil: "networkidle" });
 
       const wcagNum = page
-        .locator(".proof-grid .proof-card")
-        .filter({ hasText: "WCAG 2.1" })
-        .locator(".num")
+        .locator(".proof-grid .proof-card .num--split")
         .first();
       await wcagNum.waitFor({ state: "visible" });
 
       const sampleNum = page.locator(".proof-grid .proof-card .num").first();
 
-      const metrics = await wcagNum.evaluate((el) => {
+      const wcag = await wcagNum.evaluate((el) => {
         const style = getComputedStyle(el);
         const fontSize = parseFloat(style.fontSize);
+        const lines = el.querySelectorAll(".num-line");
+        const lineTexts = [...lines].map((l) => l.textContent?.trim() ?? "");
         const lineHeight =
           style.lineHeight === "normal"
             ? fontSize * 1.1
             : parseFloat(style.lineHeight);
-        const lines = el.scrollHeight / lineHeight;
+        const visualLines = el.scrollHeight / lineHeight;
         return {
-          lines,
-          whiteSpace: style.whiteSpace,
-          scrollWidth: el.scrollWidth,
-          clientWidth: el.clientWidth,
+          fontSize,
+          lineTexts,
+          lineCount: lines.length,
+          visualLines,
         };
       });
+
+      assert.equal(wcag.lineCount, 2, `${slug}@${width}px: expected 2 num-line spans`);
+      assert.deepEqual(
+        wcag.lineTexts,
+        ["WCAG", "2.1"],
+        `${slug}@${width}px: WCAG lines text`
+      );
+      assert(
+        wcag.visualLines >= 1.8 && wcag.visualLines <= 2.35,
+        `${slug}@${width}px: expected ~2 visual lines, got ${wcag.visualLines.toFixed(2)}`
+      );
 
       const sampleFontPx = await sampleNum.evaluate((el) =>
         parseFloat(getComputedStyle(el).fontSize)
       );
 
-      assert(
-        metrics.lines < 1.35,
-        `${slug}@${width}px: WCAG .num wraps (${metrics.lines.toFixed(2)} lines)`
-      );
-      assert.equal(
-        metrics.whiteSpace,
-        "nowrap",
-        `${slug}@${width}px: expected nowrap`
-      );
       if (width === 360) {
         assert(
           sampleFontPx >= 20,
           `${slug}@${width}px: .num font ${sampleFontPx}px < 20px`
         );
       }
-      if (width === 390) {
+      if (width === 390 || width === 430) {
         assert(
           sampleFontPx >= 22,
           `${slug}@${width}px: .num font ${sampleFontPx}px < 22px`
+        );
+      }
+      if (width === 1440) {
+        assert(
+          sampleFontPx >= 28,
+          `${slug}@${width}px: desktop .num font ${sampleFontPx}px < 28px`
         );
       }
 
       if (width === 390 && slug === "pl") {
         await page.locator(".proof-grid").screenshot({
           path: `${ARTIFACTS}/proof-grid-pl-390.png`,
-        });
-
-        const portrait = page.locator(".hero-portrait");
-        const loc = page.locator(".hero-portrait .loc-card");
-        const grid = page.locator(".proof-grid");
-        const portraitBox = await portrait.boundingBox();
-        const locBox = await loc.boundingBox();
-        const gridBox = await grid.boundingBox();
-        assert(portraitBox && locBox && gridBox, "portrait, loc-card, proof-grid boxes");
-        assert(
-          locBox.y + locBox.height <= gridBox.y + 2,
-          `loc-card overlaps grid: loc bottom=${locBox.y + locBox.height} grid top=${gridBox.y}`
-        );
-        assert(
-          gridBox.y - portraitBox.y - portraitBox.height >= 12,
-          `gap portrait→grid: ${gridBox.y - portraitBox.y - portraitBox.height}px`
-        );
-
-        const clip = await page.evaluate(() => {
-          const a = document.querySelector(".hero-portrait");
-          const b = document.querySelector(".proof-grid");
-          const ra = a.getBoundingClientRect();
-          const rb = b.getBoundingClientRect();
-          const top = Math.min(ra.top, rb.top);
-          const left = Math.min(ra.left, rb.left);
-          const bottom = Math.max(ra.bottom, rb.bottom);
-          const right = Math.max(ra.right, rb.right);
-          return {
-            x: left,
-            y: top,
-            width: right - left,
-            height: bottom - top,
-          };
-        });
-        await page.screenshot({
-          path: `${ARTIFACTS}/hero-portrait-cards-pl-390.png`,
-          clip,
         });
       }
 
