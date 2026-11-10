@@ -4,7 +4,17 @@ from __future__ import annotations
 
 import html
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from icons import (  # noqa: E402
+    COMP_ICON_KEYS,
+    FACT_ICON_KEYS,
+    PINK,
+    comp_icon_color,
+    stroke_icon,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://irynabilousspdev.github.io/iryna-bilous-portfolio"
@@ -654,8 +664,15 @@ def page_paths(lang: str) -> dict[str, str]:
 
 
 TEAM_I18N = {
-    "Wspólnie z Agnieszką": {"en": "Together with Agnieszka", "ua": "Разом з Агнєшкою"},
     "Projekt zespołowy": {"en": "Team project", "ua": "Командний проєкт"},
+}
+
+CARD_NOTE_I18N = {
+    "not_launched": {
+        "pl": "Projekt nie wystartował",
+        "en": "Project not launched",
+        "ua": "Проєкт не запущено",
+    },
 }
 
 
@@ -665,6 +682,12 @@ def team_label(team: str | None, lang: str) -> str | None:
     if lang == "pl":
         return team
     return TEAM_I18N.get(team, {}).get(lang, team)
+
+
+def card_note_label(note: str | None, lang: str) -> str | None:
+    if not note:
+        return None
+    return CARD_NOTE_I18N.get(note, {}).get(lang if lang != "ua" else "ua")
 
 
 def gallery_html(lang: str, ap: str, copy: dict) -> str:
@@ -677,8 +700,13 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
             title = e(p["title"])
             host = e(p["host"])
             url = e(p["url"])
-            team = team_label(p.get("team"), lang if lang != "pl" else "pl")
-            team_html = f'<span class="team">{e(team)}</span>' if team else ""
+            team = team_label(p.get("team"), lang)
+            note = card_note_label(p.get("card_note"), lang)
+            badge_html = ""
+            if team:
+                badge_html += f'<span class="team">{e(team)}</span>'
+            if note:
+                badge_html += f'<span class="team">{e(note)}</span>'
             alt = e(f'{p["title"]} — podgląd strony {p["host"]}' if lang == 'pl' else (
                 f'{p["title"]} — preview of {p["host"]}' if lang == 'en' else f'{p["title"]} — перегляд {p["host"]}'
             ))
@@ -688,7 +716,7 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
                 f'<img src="{thumb}" alt="{alt}" width="640" height="357" loading="lazy" decoding="async">'
                 f"</motion>"
                 f"<h3>{title}</h3>"
-                f'<p class="host">{host}</p>{team_html}'
+                f'<p class="host">{host}</p>{badge_html}'
                 f'<span class="sr-only"> — {e(copy["project_ext"])}</span>'
                 f"</a>"
             )
@@ -728,15 +756,18 @@ def page(lang: str) -> str:
         about_paras += f'<p class="{cls}">{e(p)}</p>'
 
     facts = ""
-    for label, val in copy["facts"]:
-        facts += f"""<motion class="fact"><div class="ico" aria-hidden="true">●</div>
-          <motion><p class="label">{e(label)}</p>
-          <p class="value">{e(val).replace(chr(10), "<br>")}</p></div></motion>"""
+    for fi, (label, val) in enumerate(copy["facts"]):
+        icon = stroke_icon(FACT_ICON_KEYS[fi], color=PINK, size=22)
+        wide = " fact--wide" if FACT_ICON_KEYS[fi] == "globe" else ""
+        facts += f"""<article class="fact{wide}"><div class="ico">{icon}</div>
+          <div><p class="label">{e(label)}</p>
+          <p class="value">{e(val).replace(chr(10), "<br>")}</p></div></article>"""
 
     comp_items = ""
-    for title, desc in copy["comp_items"]:
-        comp_items += f"""<article class="item"><div class="ico" aria-hidden="true">◆</div>
-          <motion><h3>{e(title)}</h3><p>{e(desc)}</p></motion></article>"""
+    for i, (title, desc) in enumerate(copy["comp_items"]):
+        icon = stroke_icon(COMP_ICON_KEYS[i], color=comp_icon_color(i), size=26)
+        comp_items += f"""<article class="item"><div class="ico">{icon}</div>
+          <div><h3>{e(title)}</h3><p>{e(desc)}</p></div></article>"""
 
     services = ""
     for i, (title, desc, when) in enumerate(copy["services"], 1):
@@ -857,10 +888,10 @@ def page(lang: str) -> str:
       <div class="container">
         <span class="eyebrow">{e(copy['about_eyebrow'])}</span>
         <h2 class="section-title" id="about-title">{e(copy['about_title'])}</h2>
-        <motion class="about-grid" style="margin-top:32px">
-          <motion>{about_paras}</motion>
+        <div class="about-grid">
+          <div class="about-copy">{about_paras}</div>
           <aside class="facts-panel" aria-label="Facts">{facts}</aside>
-        </motion>
+        </div>
       </div>
     </section>
 
@@ -869,7 +900,7 @@ def page(lang: str) -> str:
         <span class="eyebrow">{e(copy['comp_eyebrow'])}</span>
         <h2 class="section-title" id="comp-title">{e(copy['comp_title'])}</h2>
         <p class="section-intro">{e(copy['comp_intro'])}</p>
-        <div class="comp-list" style="margin-top:40px">{comp_items}</div>
+        <div class="comp-list">{comp_items}</div>
       </div>
     </section>
 
