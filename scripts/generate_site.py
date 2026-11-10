@@ -976,6 +976,15 @@ def card_note_label(note: str | None, lang: str) -> str | None:
     return CARD_NOTE_I18N.get(note, {}).get(lang if lang != "ua" else "ua")
 
 
+def project_note_text(project: dict, lang: str) -> str | None:
+    note = project.get("note")
+    if not note:
+        return None
+    if isinstance(note, dict):
+        return note.get(lang if lang != "ua" else "ua") or note.get("pl")
+    return str(note)
+
+
 def gallery_html(lang: str, ap: str, copy: dict) -> str:
     chunks = []
     for period in ("avista", "vizja", "spdev"):
@@ -987,12 +996,18 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
             host = e(p["host"])
             url = e(p["url"])
             team = team_label(p.get("team"), lang)
-            note = card_note_label(p.get("card_note"), lang)
+            badge_note = card_note_label(p.get("card_note"), lang)
+            desc_note = project_note_text(p, lang)
             badge_html = ""
             if team:
                 badge_html += f'<span class="team">{e(team)}</span>'
-            if note:
-                badge_html += f'<span class="team">{e(note)}</span>'
+            if badge_note:
+                badge_html += f'<span class="team">{e(badge_note)}</span>'
+            note_html = (
+                f'<p class="card-note">{e(desc_note)}</p>'
+                if desc_note
+                else '<p class="card-note card-note--placeholder" aria-hidden="true"></p>'
+            )
             alt = e(f'{p["title"]} — podgląd strony {p["host"]}' if lang == 'pl' else (
                 f'{p["title"]} — preview of {p["host"]}' if lang == 'en' else f'{p["title"]} — перегляд {p["host"]}'
             ))
@@ -1002,7 +1017,8 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
                 f'<img src="{thumb}" alt="{alt}" width="640" height="357" loading="lazy" decoding="async">'
                 f"</motion>"
                 f"<h3>{title}</h3>"
-                f'<p class="host">{host}</p>{badge_html}'
+                f'<p class="host">{host}</p>'
+                f"{note_html}{badge_html}"
                 f'<span class="sr-only"> — {e(copy["project_ext"])}</span>'
                 f"</a>"
             )

@@ -1345,6 +1345,7 @@ body.is-menu-open {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  align-items: stretch;
 
   @media (min-width: 900px) {
     grid-template-columns: repeat(4, 1fr);
@@ -1355,6 +1356,7 @@ body.is-menu-open {
 .project-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   text-decoration: none;
   color: inherit;
   border-radius: 14px;
@@ -1400,6 +1402,23 @@ body.is-menu-open {
     font-size: 0.875rem;
     color: $muted;
     word-break: break-word;
+  }
+
+  .card-note {
+    margin: 8px 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $muted;
+    min-height: 2.85rem;
+
+    @media (min-width: 900px) {
+      min-height: 2.6rem;
+    }
+
+    &--placeholder {
+      margin-top: 8px;
+      padding: 0;
+    }
   }
 
   .team {
