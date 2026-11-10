@@ -107,7 +107,10 @@ def t(lang: str) -> dict:
         return {
             "html_lang": "pl",
             "title": "Iryna Bilous — Frontend / WordPress Developer",
-            "meta_description": "Tworzę strony i sklepy na WordPressie — motywy, WooCommerce, integracje i dostępność WCAG. Portfolio Iryny Bilous, Warszawa.",
+            "meta_description": (
+                "Tworzę strony i sklepy na WordPressie — motywy, WooCommerce, integracje i dostępność WCAG. "
+                "Warszawa · stacjonarnie i online. Portfolio Iryny Bilous."
+            ),
             "nav": [
                 ("O mnie", "#o-mnie"),
                 ("Kompetencje", "#kompetencje"),
@@ -121,7 +124,7 @@ def t(lang: str) -> dict:
             "lang_aria": "Język strony",
             "cta_write": "Napisz do mnie",
             "cta_projects": "Zobacz realizacje",
-            "badge": "Frontend / WordPress Developer · Warszawa stacjonarnie, zdalnie cały świat",
+            "badge": "Frontend / WordPress Developer · Warszawa stacjonarnie i online",
             "hello": "Cześć, jestem Iryna",
             "hero_h1": "Tworzę strony i sklepy na WordPressie",
             "hero_lead": (
@@ -155,7 +158,7 @@ def t(lang: str) -> dict:
             "facts": [
                 (
                     "Lokalizacja",
-                    "Warszawa · stacjonarnie i hybrydowo, zdalnie dla klientów z całego świata",
+                    "Warszawa · stacjonarnie, hybrydowo i online",
                 ),
                 ("Języki", "ukraiński — ojczysty\npolski — biegły\nangielski — średniozaawansowany"),
                 ("Wykształcenie", "Magister, budownictwo przemysłowe i cywilne — Politechnika Lwowska, 2008–2013"),
@@ -358,7 +361,8 @@ def t(lang: str) -> dict:
             ),
             "contact_direct": "Napisz bezpośrednio",
             "itcommunity": "Profil na IT.Community",
-            "footer_role": "Frontend / WordPress Developer · Warszawa",
+            "footer_role": "Frontend / WordPress Developer",
+            "footer_location": "Warszawa · stacjonarnie i online",
             "footer_copy": "© 2026 Iryna Bilous",
         }
     if lang == "en":
@@ -369,7 +373,7 @@ def t(lang: str) -> dict:
             "title": "Iryna Bilous — Frontend / WordPress Developer",
             "meta_description": (
                 "I build WordPress websites and WooCommerce stores — custom themes, integrations, and WCAG accessibility. "
-                "On-site in Warsaw, remote worldwide. Portfolio of Iryna Bilous."
+                "Warsaw · on-site & online. Portfolio of Iryna Bilous."
             ),
             "nav": [
                 ("About", "#o-mnie"),
@@ -384,7 +388,7 @@ def t(lang: str) -> dict:
             "lang_aria": "Site language",
             "cta_write": "Get in touch",
             "cta_projects": "View projects",
-            "badge": "Frontend / WordPress Developer · On-site in Warsaw, remote worldwide",
+            "badge": "Frontend / WordPress Developer · Warsaw · on-site & online",
             "hello": "Hi, I'm Iryna",
             "hero_h1": "I build WordPress websites and online stores",
             "hero_lead": (
@@ -414,7 +418,7 @@ def t(lang: str) -> dict:
             "facts": [
                 (
                     "Location",
-                    "Warsaw · on-site and hybrid, remote for clients worldwide",
+                    "Warsaw · on-site, hybrid & online",
                 ),
                 ("Languages", "Ukrainian — native\nPolish — fluent\nEnglish — intermediate"),
                 ("Education", "MEng, industrial and civil engineering — Lviv Polytechnic National University, 2008–2013"),
@@ -604,7 +608,8 @@ def t(lang: str) -> dict:
             ),
             "contact_direct": "Write directly",
             "itcommunity": "Profile on IT.Community",
-            "footer_role": "Frontend / WordPress Developer · Warsaw",
+            "footer_role": "Frontend / WordPress Developer",
+            "footer_location": "Warsaw · on-site & online",
             "footer_copy": "© 2026 Iryna Bilous",
         }
     # Ukrainian
@@ -615,7 +620,7 @@ def t(lang: str) -> dict:
         "title": "Iryna Bilous — Frontend / WordPress Developer",
         "meta_description": (
             "Створюю сайти та інтернет-магазини на WordPress — власні теми, WooCommerce, інтеграції та доступність WCAG. "
-            "Варшава офлайн, віддалено — увесь світ. Портфоліо Ірини Білоус."
+            "Варшава · офлайн і онлайн. Портфоліо Ірини Білоус."
         ),
         "nav": [
             ("Про мене", "#o-mnie"),
@@ -630,7 +635,7 @@ def t(lang: str) -> dict:
         "lang_aria": "Мова сайту",
         "cta_write": "Напишіть мені",
         "cta_projects": "Переглянути реалізації",
-        "badge": "Frontend / WordPress Developer · Варшава офлайн, віддалено — увесь світ",
+        "badge": "Frontend / WordPress Developer · Варшава · офлайн і онлайн",
         "hello": "Привіт, я Ірина",
         "hero_h1": "Створюю сайти та інтернет-магазини на WordPress",
         "hero_lead": (
@@ -660,7 +665,7 @@ def t(lang: str) -> dict:
         "facts": [
             (
                 "Локація",
-                "Варшава · офіс і гібрид, віддалено для клієнтів з усього світу",
+                "Варшава · офіс, гібрид і онлайн",
             ),
             ("Мови", "українська — рідна\nпольська — вільно\nанглійська — середній рівень"),
             ("Освіта", "Магістр, промислове та цивільне будівництво — Львівська політехніка, 2008–2013"),
@@ -844,7 +849,8 @@ def t(lang: str) -> dict:
         "contact_p": "Плануєте новий сайт, магазин чи інтеграцію? Або потрібна підтримка наявного WordPress? Напишіть, що вам потрібно — відповім.",
         "contact_direct": "Напишіть напряму",
         "itcommunity": "Профіль на IT.Community",
-        "footer_role": "Frontend / WordPress Developer · Варшава",
+        "footer_role": "Frontend / WordPress Developer",
+        "footer_location": "Варшава · офлайн і онлайн",
         "footer_copy": "© 2026 Iryna Bilous",
     }
 
@@ -1279,6 +1285,7 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
     <div class="container footer-inner">
       <p class="name">Iryna Bilous</p>
       <p class="meta">{e(copy['footer_role'])}</p>
+      <p class="meta">{e(copy['footer_location'])}</p>
       <motion class="footer-end">
         <p class="copy">{e(copy['footer_copy'])} · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
         <p class="copy footer-updated">{last_updated_footer_html(lang, last_updated)}</p>
