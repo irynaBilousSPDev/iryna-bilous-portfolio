@@ -10,11 +10,14 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from icons import (  # noqa: E402
     COMP_ICON_KEYS,
+    CURRENT_WORK_ICON_KEYS,
     FACT_ICON_KEYS,
     PINK,
     comp_icon_color,
     stroke_icon,
 )
+
+ADN_AKADEMIA_URL = "https://www.adnakademia.pl/"
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://irynabilousspdev.github.io/iryna-bilous-portfolio"
@@ -238,6 +241,35 @@ def t(lang: str) -> dict:
                 "Project Management — w trakcie nauki",
                 "UI/UX Design — w trakcie nauki",
             ],
+            "current_work_badge": "W toku",
+            "current_work_kicker": "Obecnie pracuję nad",
+            "current_work_heading": "Redesign i migracja serwisu ADN Akademia",
+            "current_work_lead": (
+                "Projektuję i koduję nową wersję serwisu dużej firmy szkoleniowej, od architektury informacji "
+                "i wireframe’ów po zakup szkoleń w WooCommerce oraz zapisy trafiające do CRM."
+            ),
+            "current_work_points": [
+                (
+                    "Architektura i ścieżki użytkownika",
+                    "Nowa mapa serwisu oraz schematy zakupu, voucherów i konta klienta.",
+                ),
+                (
+                    "Wireframe’y w Figmie",
+                    "Ponad 48 plansz, m.in. strona główna, katalog, karta szkolenia, kursy, konferencje, koszyk, Moje konto i wersja mobilna.",
+                ),
+                (
+                    "Zakupy w WooCommerce",
+                    "Zapis przez koszyk z opcją „Zapłać teraz” lub „Tylko rezerwacja”, a w kolejnym etapie szybki zakup i pełna obsługa stanów zamówienia.",
+                ),
+                (
+                    "Zapisy i integracja z CRM",
+                    "Formularze zapisu i zapytań B2B przekazujące zgłoszenia do CRM firmy.",
+                ),
+            ],
+            "current_work_footer_before": (
+                "Projekt w trakcie realizacji. Nowa wersja nie jest jeszcze opublikowana; obecny serwis: "
+            ),
+            "current_work_footer_link": "adnakademia.pl",
             "work_eyebrow": "Realizacje",
             "work_title": "Strony i serwisy, przy których pracowałam",
             "work_intro": (
@@ -437,6 +469,35 @@ def t(lang: str) -> dict:
                 "Project Management — in progress",
                 "UI/UX Design — in progress",
             ],
+            "current_work_badge": "In progress",
+            "current_work_kicker": "Currently working on",
+            "current_work_heading": "Redesign and migration of the ADN Akademia website",
+            "current_work_lead": (
+                "I'm designing and building a new version of a major training company's website — from information "
+                "architecture and wireframes to purchasing courses in WooCommerce and registrations flowing into the CRM."
+            ),
+            "current_work_points": [
+                (
+                    "Information architecture and user journeys",
+                    "A new site map plus flows for purchasing, vouchers, and the customer account.",
+                ),
+                (
+                    "Wireframes in Figma",
+                    "More than 48 screens, including homepage, catalogue, course page, courses, conferences, cart, My account, and the mobile version.",
+                ),
+                (
+                    "Purchases in WooCommerce",
+                    "Enrolment via the cart with a “Pay now” or “Reservation only” option; in the next phase, quick checkout and full order-status handling.",
+                ),
+                (
+                    "Sign-ups and CRM integration",
+                    "Registration and B2B enquiry forms that pass submissions to the company's CRM.",
+                ),
+            ],
+            "current_work_footer_before": (
+                "Project in progress. The new version is not published yet; current site: "
+            ),
+            "current_work_footer_link": "adnakademia.pl",
             "work_eyebrow": "Projects",
             "work_title": "Sites I've worked on",
             "work_intro": "Projects I coded independently or with a team. Team projects are labelled accordingly.",
@@ -632,6 +693,35 @@ def t(lang: str) -> dict:
             "Project Management — у процесі навчання",
             "UI/UX Design — у процесі навчання",
         ],
+        "current_work_badge": "У роботі",
+        "current_work_kicker": "Зараз працюю над",
+        "current_work_heading": "Редизайн і міграція сайту ADN Akademia",
+        "current_work_lead": (
+            "Проєктую та кодую нову версію сайту великої навчальної компанії — від інформаційної архітектури "
+            "і вайрфреймів до купівлі тренінгів у WooCommerce і записів, що потрапляють у CRM."
+        ),
+        "current_work_points": [
+            (
+                "Архітектура та користувацькі шляхи",
+                "Нова карта сайту та схеми покупки, ваучерів і облікового запису клієнта.",
+            ),
+            (
+                "Вайрфрейми у Figma",
+                "Понад 48 макетів: головна, каталог, картка тренінгу, курси, конференції, кошик, Мій обліковий запис і мобільна версія.",
+            ),
+            (
+                "Покупки в WooCommerce",
+                "Запис через кошик з опцією «Сплатити зараз» або «Лише резервація»; наступним етапом — швидка покупка та повна обробка статусів замовлень.",
+            ),
+            (
+                "Записи та інтеграція з CRM",
+                "Форми запису та B2B-запитів, що передають звернення в CRM компанії.",
+            ),
+        ],
+        "current_work_footer_before": (
+            "Проєкт у процесі реалізації. Нова версія ще не опублікована; поточний сайт: "
+        ),
+        "current_work_footer_link": "adnakademia.pl",
         "work_eyebrow": "Реалізації",
         "work_title": "Сайти, над якими працювала",
         "work_intro": "Реалізації, які кодувала самостійно або з командою. Командні проєкти позначені відповідно.",
@@ -758,15 +848,20 @@ def page(lang: str) -> str:
     facts = ""
     for fi, (label, val) in enumerate(copy["facts"]):
         icon = stroke_icon(FACT_ICON_KEYS[fi], color=PINK, size=22)
-        wide = " fact--wide" if FACT_ICON_KEYS[fi] == "globe" else ""
-        facts += f"""<article class="fact{wide}"><div class="ico">{icon}</div>
-          <div><p class="label">{e(label)}</p>
-          <p class="value">{e(val).replace(chr(10), "<br>")}</p></div></article>"""
+        facts += f"""<article class="fact"><div class="ico">{icon}</div>
+          <p class="label">{e(label)}</p>
+          <p class="value">{e(val).replace(chr(10), "<br>")}</p></article>"""
 
     comp_items = ""
     for i, (title, desc) in enumerate(copy["comp_items"]):
         icon = stroke_icon(COMP_ICON_KEYS[i], color=comp_icon_color(i), size=26)
         comp_items += f"""<article class="item"><div class="ico">{icon}</div>
+          <div><h3>{e(title)}</h3><p>{e(desc)}</p></div></article>"""
+
+    current_work_points = ""
+    for i, (title, desc) in enumerate(copy["current_work_points"]):
+        icon = stroke_icon(CURRENT_WORK_ICON_KEYS[i], color=comp_icon_color(i), size=26)
+        current_work_points += f"""<article class="item"><div class="ico">{icon}</div>
           <div><h3>{e(title)}</h3><p>{e(desc)}</p></div></article>"""
 
     services = ""
@@ -888,7 +983,7 @@ def page(lang: str) -> str:
       <div class="container">
         <span class="eyebrow">{e(copy['about_eyebrow'])}</span>
         <h2 class="section-title" id="about-title">{e(copy['about_title'])}</h2>
-        <div class="about-grid">
+        <div class="about-layout">
           <div class="about-copy">{about_paras}</div>
           <aside class="facts-panel" aria-label="Facts">{facts}</aside>
         </div>
@@ -941,6 +1036,22 @@ def page(lang: str) -> str:
             <ul>{growth_li}</ul>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="section section--sky" id="w-toku" aria-labelledby="current-work-heading">
+      <div class="container">
+        <article class="current-work-card">
+          <span class="current-work-badge">{e(copy['current_work_badge'])}</span>
+          <p class="current-work-kicker">{e(copy['current_work_kicker'])}</p>
+          <h2 class="current-work-title" id="current-work-heading">{e(copy['current_work_heading'])}</h2>
+          <p class="current-work-lead">{e(copy['current_work_lead'])}</p>
+          <div class="comp-list current-work-points">{current_work_points}</div>
+          <p class="current-work-footer">
+            {e(copy['current_work_footer_before'])}
+            <a href="{ADN_AKADEMIA_URL}" target="_blank" rel="noopener noreferrer">{e(copy['current_work_footer_link'])}</a>
+          </p>
+        </article>
       </div>
     </section>
 
