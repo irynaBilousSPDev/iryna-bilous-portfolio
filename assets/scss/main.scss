@@ -1354,25 +1354,60 @@ body.is-menu-open {
 }
 
 .project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
-  text-decoration: none;
-  color: inherit;
   border-radius: 14px;
-  overflow: hidden;
 
-  &:hover {
-    text-decoration: none;
-
-    .thumb img {
-      transform: scale(1.02);
+  &--has-more {
+    .project-card__foot {
+      min-height: 1.75rem;
     }
   }
 
-  &:focus-visible {
-    outline: 2px solid $navy;
-    outline-offset: 4px;
+  &__link {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    text-decoration: none;
+    color: inherit;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: 14px;
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      .thumb img {
+        transform: scale(1.02);
+      }
+    }
+
+    &:focus-visible {
+      outline: none;
+
+      &::after {
+        outline: 2px solid $navy;
+        outline-offset: 4px;
+      }
+    }
+  }
+
+  &__foot {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    padding-top: 2px;
+  }
+
+  &__badges {
+    margin-top: 8px;
   }
 
   .thumb {
@@ -1404,26 +1439,51 @@ body.is-menu-open {
     word-break: break-word;
   }
 
+  .card-details {
+    margin: 4px 0 0;
+
+    &__toggle {
+      display: inline-block;
+      cursor: pointer;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: $muted;
+      list-style: none;
+      padding: 4px 2px;
+      border-radius: 4px;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::marker {
+        content: "";
+      }
+
+      &:hover {
+        color: $ink;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $navy;
+        outline-offset: 2px;
+      }
+    }
+
+    &[open] .card-details__toggle {
+      color: $ink;
+    }
+  }
+
   .card-note {
-    margin: 8px 0 0;
+    margin: 6px 0 0;
     font-size: 0.8125rem;
     line-height: 1.4;
     color: $muted;
-    min-height: 2.85rem;
-
-    @media (min-width: 900px) {
-      min-height: 2.6rem;
-    }
-
-    &--placeholder {
-      margin-top: 8px;
-      padding: 0;
-    }
   }
 
   .team {
     display: inline-block;
-    margin-top: 10px;
     padding: 4px 10px;
     background: $pink-soft;
     color: $pink;
