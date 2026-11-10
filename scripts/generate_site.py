@@ -1158,17 +1158,16 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
         </button>
       </div>
     </div>
-    <div class="nav-mobile-wrap" id="nav-mobile" data-nav-mobile hidden>
-      <button type="button" class="nav-mobile-backdrop" data-menu-backdrop aria-label="{e(copy['menu_close'])}"></button>
-      <div class="nav-mobile-panel">
-        <nav class="nav-mobile" aria-label="{e(copy['nav_aria'])} mobile">{nav_mobile}</nav>
-        <div class="nav-mobile-footer">
-          <nav aria-label="{e(copy['lang_aria'])}"><ul class="lang-switch lang-switch--menu">{lang_links}</ul></nav>
-          <a class="btn btn--primary nav-mobile-cta" href="#kontakt">{e(copy['cta_write'])}</a>
-        </div>
+  </header>
+  <div class="nav-mobile-wrap" id="nav-mobile" data-nav-mobile hidden>
+    <button type="button" class="nav-mobile-backdrop" data-menu-backdrop aria-label="{e(copy['menu_close'])}"></button>
+    <div class="nav-mobile-panel">
+      <nav class="nav-mobile" aria-label="{e(copy['nav_aria'])} mobile">{nav_mobile}</nav>
+      <div class="nav-mobile-footer">
+        <a class="btn btn--primary nav-mobile-cta" href="#kontakt">{e(copy['cta_write'])}</a>
       </div>
     </div>
-  </header>
+  </div>
   <main id="main">
     <section class="section section--hero" id="hero" aria-labelledby="hero-title">
       <div class="container">

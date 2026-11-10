@@ -69,7 +69,7 @@ a {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 110;
   background: rgba($sky, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid transparent;
@@ -264,39 +264,56 @@ body.is-menu-open {
 }
 
 .menu-toggle {
-  display: inline-flex;
-  flex-direction: column;
+  display: inline-block;
+  position: relative;
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
   width: 44px;
   height: 44px;
   border: none;
   border-radius: 50%;
   background: $white;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
   @media (min-width: 1100px) {
     display: none;
   }
 
+  &:focus {
+    outline: none;
+  }
+
   span:not(.sr-only) {
-    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
     width: 20px;
     height: 2px;
+    margin-left: -10px;
+    margin-top: -1px;
     background: $ink;
-    margin: 0;
     border-radius: 1px;
     transform-origin: center;
     transition:
       transform 0.2s ease,
       opacity 0.15s ease;
+
+    &:nth-child(2) {
+      transform: translateY(-6px);
+    }
+
+    &:nth-child(3) {
+      transform: translateY(0);
+    }
+
+    &:nth-child(4) {
+      transform: translateY(6px);
+    }
   }
 
   &[aria-expanded="true"] {
     span:not(.sr-only):nth-child(2) {
-      transform: translateY(6px) rotate(45deg);
+      transform: translateY(0) rotate(45deg);
     }
 
     span:not(.sr-only):nth-child(3) {
@@ -304,7 +321,7 @@ body.is-menu-open {
     }
 
     span:not(.sr-only):nth-child(4) {
-      transform: translateY(-6px) rotate(-45deg);
+      transform: translateY(0) rotate(-45deg);
     }
   }
 
@@ -314,15 +331,10 @@ body.is-menu-open {
   }
 }
 
+// Outside .site-header so fixed children are not trapped by header backdrop-filter.
 .nav-mobile-wrap {
-  display: none;
-
   @media (min-width: 1100px) {
     display: none !important;
-  }
-
-  &.is-open {
-    display: block;
   }
 
   &[hidden] {
@@ -337,7 +349,7 @@ body.is-menu-open {
 .nav-mobile-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 45;
+  z-index: 90;
   margin: 0;
   padding: 0;
   border: none;
@@ -347,7 +359,7 @@ body.is-menu-open {
 
 .nav-mobile-panel {
   position: fixed;
-  z-index: 46;
+  z-index: 95;
   top: var(--header-height, 68px);
   left: 0;
   right: 0;
@@ -358,6 +370,7 @@ body.is-menu-open {
   background: $white;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 
   @media (min-width: 900px) {
     padding-inline: 80px;
@@ -391,11 +404,6 @@ body.is-menu-open {
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-}
-
-.lang-switch--menu {
-  align-self: stretch;
-  justify-content: center;
 }
 
 .nav-mobile-cta {
