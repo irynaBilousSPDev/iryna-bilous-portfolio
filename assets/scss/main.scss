@@ -394,6 +394,10 @@ a {
   }
 }
 
+.hero-main {
+  min-width: 0;
+}
+
 .hero-greeting {
   margin: 0 0 8px;
   font-size: 1.2rem;
@@ -701,6 +705,9 @@ a {
       font-weight: 500;
       font-size: 0.9375rem;
       line-height: 1.45;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
     }
   }
 }

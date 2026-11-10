@@ -2,8 +2,11 @@
 """Generate PL / EN / UA static HTML for Iryna Bilous portfolio."""
 from __future__ import annotations
 
+import hashlib
 import html
 import json
+import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -20,6 +23,8 @@ from icons import (  # noqa: E402
 ADN_AKADEMIA_URL = "https://www.adnakademia.pl/"
 
 ROOT = Path(__file__).resolve().parents[1]
+CSS_PATH = ROOT / "assets/css/main.css"
+SCSS_ENTRY = ROOT / "assets/scss/main.scss"
 SITE = "https://irynabilousspdev.github.io/iryna-bilous-portfolio"
 LINKEDIN = "https://www.linkedin.com/in/iryna-bilous-166343164/"
 IT_COMMUNITY = "https://it-community.io/people/iryna-bilous-38"
@@ -741,6 +746,41 @@ def e(s: str) -> str:
     return html.escape(s, quote=True)
 
 
+def compile_css() -> None:
+    """Compile SCSS → CSS (source of truth for Pages)."""
+    subprocess.run(
+        [
+            "npx",
+            "sass",
+            str(SCSS_ENTRY),
+            str(CSS_PATH),
+            "--style=compressed",
+        ],
+        cwd=ROOT,
+        check=True,
+    )
+
+
+def css_cache_bust() -> str:
+    digest = hashlib.sha256(CSS_PATH.read_bytes()).hexdigest()
+    return digest[:10]
+
+
+def verify_html_classes_in_css() -> None:
+    css = CSS_PATH.read_text(encoding="utf-8")
+    classes: set[str] = set()
+    for rel in ("index.html", "en/index.html", "ua/index.html"):
+        text = (ROOT / rel).read_text(encoding="utf-8")
+        for m in re.finditer(r'\bclass="([^"]*)"', text):
+            classes.update(m.group(1).split())
+    missing = []
+    for name in sorted(classes):
+        if not re.search(r"\." + re.escape(name) + r"(?:[,\s\.#\[{>+~:_-]|$)", css):
+            missing.append(name)
+    if missing:
+        raise RuntimeError(f"CSS missing classes used in HTML: {', '.join(missing)}")
+
+
 def asset_prefix(lang: str) -> str:
     return "../" if lang in ("en", "ua") else ""
 
@@ -814,7 +854,7 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
     return "\n".join(chunks).replace("<motion", "<div").replace("</motion>", "</div>")
 
 
-def page(lang: str) -> str:
+def page(lang: str, css_ver: str) -> str:
     copy = t(lang)
     ap = asset_prefix(lang)
     paths = page_paths(lang)
@@ -926,7 +966,7 @@ def page(lang: str) -> str:
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Syne:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{ap}assets/css/main.css">
+  <link rel="stylesheet" href="{ap}assets/css/main.css?v={css_ver}">
 </head>
 <body>
   <a class="skip-link" href="#main">{e('Przejdź do treści' if lang=='pl' else ('Skip to content' if lang=='en' else 'Перейти до змісту'))}</a>
@@ -1098,12 +1138,15 @@ def page(lang: str) -> str:
 
 
 def main():
-    (ROOT / "index.html").write_text(page("pl"), encoding="utf-8")
+    compile_css()
+    css_ver = css_cache_bust()
+    (ROOT / "index.html").write_text(page("pl", css_ver), encoding="utf-8")
     (ROOT / "en").mkdir(exist_ok=True)
     (ROOT / "ua").mkdir(exist_ok=True)
-    (ROOT / "en/index.html").write_text(page("en"), encoding="utf-8")
-    (ROOT / "ua/index.html").write_text(page("ua"), encoding="utf-8")
-    print("Generated index.html, en/index.html, ua/index.html")
+    (ROOT / "en/index.html").write_text(page("en", css_ver), encoding="utf-8")
+    (ROOT / "ua/index.html").write_text(page("ua", css_ver), encoding="utf-8")
+    verify_html_classes_in_css()
+    print(f"Generated HTML (main.css?v={css_ver}, {CSS_PATH.stat().st_size} bytes)")
 
 
 if __name__ == "__main__":
