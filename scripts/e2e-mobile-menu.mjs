@@ -1,17 +1,18 @@
 #!/usr/bin/env node
 /**
- * Mobile menu smoke test — requires: npx playwright install chromium
- * Server: python3 -m http.server 8765 from repo root
+ * Mobile menu — open at top / after scroll; header stays visible.
  */
 import { chromium } from "playwright";
 import assert from "node:assert/strict";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { spawn } from "node:child_process";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const ARTIFACTS = "/opt/cursor/artifacts";
-const BASE = process.env.E2E_BASE_URL || "http://127.0.0.1:8765";
+const PORT = Number(process.env.E2E_PORT || 8765);
+const BASE = process.env.E2E_BASE_URL || `http://127.0.0.1:${PORT}`;
 
 const locales = [
   { path: "/", slug: "pl", cta: "Napisz do mnie" },
@@ -19,75 +20,156 @@ const locales = [
   { path: "/ua/", slug: "ua", cta: "Напишіть мені" },
 ];
 
-const browser = await chromium.launch();
-const mobile = await browser.newContext({
-  viewport: { width: 390, height: 844 },
-  isMobile: true,
-  hasTouch: true,
-  deviceScaleFactor: 2,
-});
-const desktop = await browser.newContext({
-  viewport: { width: 1440, height: 900 },
-});
-
-async function testMobile({ path: pagePath, slug, cta }) {
-  const page = await mobile.newPage();
-  await page.goto(`${BASE}${pagePath === "/" ? "/" : pagePath}`, { waitUntil: "networkidle" });
-
-  const toggle = page.locator("[data-menu-toggle]");
-  const wrap = page.locator("[data-nav-mobile]");
-  await toggle.tap();
-
-  await page.waitForFunction(() => {
-    const w = document.querySelector("[data-nav-mobile]");
-    return w && !w.hasAttribute("hidden") && w.classList.contains("is-open");
+function startServer() {
+  return spawn("python3", ["-m", "http.server", String(PORT)], {
+    cwd: ROOT,
+    stdio: "ignore",
   });
-  await page.waitForTimeout(500);
-
-  const panelBox = await page.locator(".nav-mobile-panel").boundingBox();
-  assert(panelBox, "panel should have layout box");
-  assert(panelBox.height >= 500, `panel too short: ${panelBox.height}px`);
-  assert(panelBox.y >= 60 && panelBox.y <= 80, `panel top y=${panelBox.y}`);
-
-  const navLinks = page.locator(".nav-mobile a");
-  assert.equal(await navLinks.count(), 5, "five nav links");
-  assert.ok(await page.locator(".nav-mobile-cta").isVisible());
-  assert.equal(await page.locator(".nav-mobile-footer .lang-switch").count(), 0);
-  assert.ok(await page.locator(".site-header .lang-switch").isVisible());
-
-  await page.screenshot({
-    path: `${ARTIFACTS}/menu-open-${slug}-390.png`,
-    fullPage: false,
-  });
-  await page.locator("[data-menu-toggle]").screenshot({
-    path: `${ARTIFACTS}/menu-toggle-x-${slug}-390.png`,
-  });
-
-  await page.locator(".nav-mobile a").first().tap();
-  await page.waitForFunction(() => {
-    const t = document.querySelector("[data-menu-toggle]");
-    return t?.getAttribute("aria-expanded") === "false";
-  });
-  assert.equal(await wrap.getAttribute("hidden"), "");
-
-  await page.close();
-  console.log(`OK mobile ${slug}`);
 }
 
-async function testDesktop() {
-  const page = await desktop.newPage();
-  await page.goto(`${BASE}/`, { waitUntil: "networkidle" });
-  assert.equal(await page.locator("[data-menu-toggle]").count(), 1);
-  assert.ok(!(await page.locator(".nav-mobile-wrap").isVisible()));
-  await page.screenshot({ path: `${ARTIFACTS}/menu-desktop-1440.png` });
-  await page.close();
-  console.log("OK desktop 1440");
-}
+const server = startServer();
+await new Promise((r) => setTimeout(r, 400));
 
-for (const loc of locales) {
-  await testMobile(loc);
-}
-await testDesktop();
+try {
+  const browser = await chromium.launch();
+  const mobile = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    isMobile: true,
+    hasTouch: true,
+    deviceScaleFactor: 2,
+  });
+  const desktop = await browser.newContext({
+    viewport: { width: 1440, height: 900 },
+  });
 
-await browser.close();
-console.log("All mobile menu e2e checks passed.");
+  async function assertMenuLayout(page, { screenshotAfterScroll = false } = {}) {
+    const toggle = page.locator("[data-menu-toggle]");
+    const header = page.locator(".site-header");
+    const panel = page.locator(".nav-mobile-panel");
+    const backdrop = page.locator(".nav-mobile-backdrop");
+
+    await page.waitForTimeout(500);
+
+    assert(await toggle.isVisible(), "menu toggle must be visible");
+    assert(await header.isVisible(), "header must stay visible when menu open");
+    assert(await toggle.getAttribute("aria-expanded"), "true");
+
+    const headerBox = await header.boundingBox();
+    const panelBox = await panel.boundingBox();
+    const backdropBox = await backdrop.boundingBox();
+    const toggleBox = await toggle.boundingBox();
+    const viewport = page.viewportSize();
+
+    assert(headerBox, "header box");
+    assert(panelBox, "panel box");
+    assert(backdropBox, "backdrop box");
+    assert(toggleBox, "toggle box");
+
+    assert(headerBox.y >= -1 && headerBox.y <= 4, `header y=${headerBox.y}`);
+    assert(toggleBox.y >= headerBox.y && toggleBox.y <= headerBox.y + headerBox.height, "toggle inside header");
+    assert(
+      panelBox.y >= headerBox.height - 2,
+      `panel should start under header: panel.y=${panelBox.y} header.h=${headerBox.height}`
+    );
+    assert(panelBox.x <= 1, `panel side gap left: x=${panelBox.x}`);
+    assert(
+      panelBox.width >= viewport.width - 2,
+      `panel width ${panelBox.width} vs viewport ${viewport.width}`
+    );
+    assert(backdropBox.width >= viewport.width - 2, "backdrop full width");
+
+    if (screenshotAfterScroll) {
+      await page.screenshot({
+        path: `${ARTIFACTS}/menu-open-after-scroll-pl-390.png`,
+        fullPage: false,
+      });
+    }
+  }
+
+  async function openMenu(page) {
+    const toggle = page.locator("[data-menu-toggle]");
+    await toggle.tap();
+    await page.waitForFunction(() => {
+      const w = document.querySelector("[data-nav-mobile]");
+      return w && !w.hasAttribute("hidden") && w.classList.contains("is-open");
+    });
+  }
+
+  async function closeMenuViaX(page) {
+    const toggle = page.locator("[data-menu-toggle]");
+    await toggle.tap();
+    await page.waitForFunction(() => {
+      const t = document.querySelector("[data-menu-toggle]");
+      return t?.getAttribute("aria-expanded") === "false";
+    });
+    const wrap = page.locator("[data-nav-mobile]");
+    assert.equal(await wrap.getAttribute("hidden"), "");
+  }
+
+  async function testMobileAtTop({ path: pagePath, slug }) {
+    const page = await mobile.newPage();
+    await page.goto(`${BASE}${pagePath === "/" ? "/" : pagePath}`, { waitUntil: "networkidle" });
+    await openMenu(page);
+    await assertMenuLayout(page);
+
+    const navLinks = page.locator(".nav-mobile a");
+    assert.equal(await navLinks.count(), 5, "five nav links");
+    assert.equal(await page.locator(".nav-mobile-footer .lang-switch").count(), 0);
+
+    if (slug === "pl") {
+      await page.screenshot({
+        path: `${ARTIFACTS}/menu-open-${slug}-390.png`,
+        fullPage: false,
+      });
+    }
+
+    await page.locator(".nav-mobile a").first().tap();
+    await page.waitForFunction(() => {
+      const t = document.querySelector("[data-menu-toggle]");
+      return t?.getAttribute("aria-expanded") === "false";
+    });
+
+    await page.close();
+    console.log(`OK mobile top ${slug}`);
+  }
+
+  async function testMobileScrolledPL() {
+    const page = await mobile.newPage();
+    await page.goto(`${BASE}/`, { waitUntil: "networkidle" });
+
+    await page.locator("#o-mnie").scrollIntoViewIfNeeded();
+    await openMenu(page);
+    await assertMenuLayout(page, { screenshotAfterScroll: true });
+    await closeMenuViaX(page);
+
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.waitForTimeout(200);
+    await openMenu(page);
+    await assertMenuLayout(page);
+    await closeMenuViaX(page);
+
+    await page.close();
+    console.log("OK mobile menu after scroll (PL)");
+  }
+
+  async function testDesktop() {
+    const page = await desktop.newPage();
+    await page.goto(`${BASE}/`, { waitUntil: "networkidle" });
+    assert.equal(await page.locator("[data-menu-toggle]").count(), 1);
+    assert.ok(!(await page.locator(".nav-mobile-wrap").isVisible()));
+    await page.screenshot({ path: `${ARTIFACTS}/menu-desktop-1440.png` });
+    await page.close();
+    console.log("OK desktop 1440");
+  }
+
+  for (const loc of locales) {
+    await testMobileAtTop(loc);
+  }
+  await testMobileScrolledPL();
+  await testDesktop();
+
+  await browser.close();
+  console.log("All mobile menu e2e checks passed.");
+} finally {
+  server.kill();
+}

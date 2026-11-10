@@ -81,9 +81,45 @@ try {
       );
 
       if (width === 390 && slug === "pl") {
-        const grid = page.locator(".proof-grid");
-        await grid.screenshot({
+        await page.locator(".proof-grid").screenshot({
           path: `${ARTIFACTS}/proof-grid-pl-390.png`,
+        });
+
+        const portrait = page.locator(".hero-portrait");
+        const loc = page.locator(".hero-portrait .loc-card");
+        const grid = page.locator(".proof-grid");
+        const portraitBox = await portrait.boundingBox();
+        const locBox = await loc.boundingBox();
+        const gridBox = await grid.boundingBox();
+        assert(portraitBox && locBox && gridBox, "portrait, loc-card, proof-grid boxes");
+        assert(
+          locBox.y + locBox.height <= gridBox.y + 2,
+          `loc-card overlaps grid: loc bottom=${locBox.y + locBox.height} grid top=${gridBox.y}`
+        );
+        assert(
+          gridBox.y - portraitBox.y - portraitBox.height >= 12,
+          `gap portrait→grid: ${gridBox.y - portraitBox.y - portraitBox.height}px`
+        );
+
+        const clip = await page.evaluate(() => {
+          const a = document.querySelector(".hero-portrait");
+          const b = document.querySelector(".proof-grid");
+          const ra = a.getBoundingClientRect();
+          const rb = b.getBoundingClientRect();
+          const top = Math.min(ra.top, rb.top);
+          const left = Math.min(ra.left, rb.left);
+          const bottom = Math.max(ra.bottom, rb.bottom);
+          const right = Math.max(ra.right, rb.right);
+          return {
+            x: left,
+            y: top,
+            width: right - left,
+            height: bottom - top,
+          };
+        });
+        await page.screenshot({
+          path: `${ARTIFACTS}/hero-portrait-cards-pl-390.png`,
+          clip,
         });
       }
 

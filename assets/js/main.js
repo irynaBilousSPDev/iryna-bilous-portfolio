@@ -4,6 +4,12 @@
   const menuWrap = document.querySelector("[data-nav-mobile]");
   const backdrop = document.querySelector("[data-menu-backdrop]");
   const srLabel = toggle?.querySelector(".sr-only");
+  let menuScrollY = 0;
+
+  function syncHeaderHeightVar() {
+    if (!header) return;
+    document.documentElement.style.setProperty("--header-height", `${header.offsetHeight}px`);
+  }
 
   if (header) {
     const onScroll = () => {
@@ -11,6 +17,22 @@
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+    syncHeaderHeightVar();
+    window.addEventListener("resize", syncHeaderHeightVar, { passive: true });
+  }
+
+  function unlockPageScroll() {
+    const { body } = document;
+    const y = menuScrollY;
+    body.style.position = "";
+    body.style.top = "";
+    body.style.left = "";
+    body.style.right = "";
+    body.style.width = "";
+    body.style.paddingRight = "";
+    if (header) header.style.paddingRight = "";
+    window.scrollTo(0, y);
+    menuScrollY = 0;
   }
 
   function closeMenu({ returnFocus = false } = {}) {
@@ -20,6 +42,7 @@
     menuWrap.setAttribute("hidden", "");
     document.documentElement.classList.remove("is-menu-open");
     document.body.classList.remove("is-menu-open");
+    unlockPageScroll();
     if (srLabel && srLabel.dataset.open) {
       srLabel.textContent = srLabel.dataset.open;
     }
@@ -30,11 +53,24 @@
 
   function openMenu() {
     if (!toggle || !menuWrap) return;
+    menuScrollY = window.scrollY;
+    syncHeaderHeightVar();
+    const { body, documentElement } = document;
+    const scrollbarGap = window.innerWidth - documentElement.clientWidth;
+    if (scrollbarGap > 0) {
+      body.style.paddingRight = `${scrollbarGap}px`;
+      header.style.paddingRight = `${scrollbarGap}px`;
+    }
+    body.style.position = "fixed";
+    body.style.top = `-${menuScrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
     toggle.setAttribute("aria-expanded", "true");
     menuWrap.removeAttribute("hidden");
     menuWrap.classList.add("is-open");
-    document.documentElement.classList.add("is-menu-open");
-    document.body.classList.add("is-menu-open");
+    documentElement.classList.add("is-menu-open");
+    body.classList.add("is-menu-open");
     if (srLabel && srLabel.dataset.close) {
       srLabel.textContent = srLabel.dataset.close;
     }
