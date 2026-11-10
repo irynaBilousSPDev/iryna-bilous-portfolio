@@ -988,6 +988,17 @@ def project_note_text(project: dict, lang: str) -> str | None:
     return str(note)
 
 
+def proof_num_html(n: str) -> str:
+    if n == "WCAG 2.1":
+        return (
+            '<p class="num num--split">'
+            '<span class="num-line">WCAG</span>'
+            '<span class="num-line">2.1</span>'
+            "</p>"
+        )
+    return f'<p class="num">{e(n)}</p>'
+
+
 def gallery_html(lang: str, ap: str, copy: dict) -> str:
     chunks = []
     for period in ("avista", "vizja", "spdev"):
@@ -1071,10 +1082,11 @@ def page(lang: str, css_ver: str, last_updated: date) -> str:
         tile = "sky" if i % 2 == 0 else "pink"
         color = BLUE if tile == "sky" else PINK
         icon = stroke_icon(PROOF_ICON_KEYS[i], color=color, size=22)
+        num_html = proof_num_html(n)
         proof_cards += f"""<article class="proof-card">
           <div class="proof-head">
             <span class="proof-tile proof-tile--{tile}" aria-hidden="true">{icon}</span>
-            <p class="num">{e(n)}</p>
+            {num_html}
           </div>
           <p class="label">{e(label)}</p>
           <p class="sub">{e(sub)}</p>
