@@ -217,7 +217,7 @@ body.is-menu-open {
     color: $white;
 
     &:hover {
-      filter: brightness(1.05);
+      background: $pink-hover;
       text-decoration: none;
     }
   }
@@ -228,6 +228,7 @@ body.is-menu-open {
     border: 1.5px solid $ink;
 
     &:hover {
+      background: $tint;
       text-decoration: none;
     }
   }
@@ -235,9 +236,10 @@ body.is-menu-open {
   &--ghost-light {
     background: transparent;
     color: $white;
-    border: 1.5px solid $white;
+    border: 1.5px solid $ghost-on-pink;
 
     &:hover {
+      background: rgba($white, 0.12);
       text-decoration: none;
     }
   }
@@ -247,6 +249,7 @@ body.is-menu-open {
     color: $pink;
 
     &:hover {
+      background: $pink-soft;
       text-decoration: none;
     }
   }
@@ -593,7 +596,7 @@ body.is-menu-open {
     background: $white;
     border-radius: 24px;
     padding: 8px;
-    box-shadow: 0 20px 50px rgba($navy, 0.08);
+    box-shadow: 0 20px 50px rgba($navy, 0.07);
 
     @media (min-width: 900px) {
       border-radius: 30px;
@@ -627,7 +630,7 @@ body.is-menu-open {
     background: $white;
     border-radius: $radius-md;
     padding: 12px 16px;
-    box-shadow: 0 8px 24px rgba($navy, 0.1);
+    box-shadow: 0 8px 24px rgba($navy, 0.08);
 
     @media (min-width: 900px) {
       left: -24px;
@@ -699,7 +702,7 @@ body.is-menu-open {
     place-items: center;
 
     &--sky {
-      background: mix($white, $sky, 45%);
+      background: $sky;
     }
 
     &--pink {
@@ -1230,6 +1233,7 @@ body.is-menu-open {
       span {
         padding: 8px 16px;
         background: $sky;
+        color: $ink;
         border-radius: 999px;
         font-size: 0.95rem;
         font-weight: 500;
@@ -1278,7 +1282,7 @@ body.is-menu-open {
   font-family: $font-heading;
   font-size: 1.125rem;
   font-weight: 700;
-  color: $navy;
+  color: $ink;
 
   &:first-child {
     margin-top: 0;
