@@ -12,9 +12,9 @@
       "host": "aktywnaukraina.com",
       "team": null,
       "note": {
-        "pl": "Strona unijnego projektu „Kompleksowa Ścieżka Integracji” dla obywateli Ukrainy na Mazowszu — wsparcie w nauce języka polskiego, zdobyciu zawodu i znalezieniu pracy (Fundusze Europejskie dla Mazowsza). Zakodowałam i wdrożyłam ją na WordPressie na podstawie gotowego projektu graficznego (własny motyw). WordPress · własny motyw · RWD",
-        "en": "Website of the EU-funded project Comprehensive Integration Path for Ukrainian citizens in Mazovia — support with learning Polish, gaining a profession and finding a job (European Funds for Mazovia). I coded and deployed it on WordPress based on a ready-made graphic design (custom theme). WordPress · custom theme · responsive design",
-        "ua": "Сайт європейського проєкту «Комплексний шлях інтеграції» для громадян України на Мазовії — підтримка у вивченні польської мови, здобутті професії та пошуку роботи (Європейські фонди для Мазовії). Закодувала та впровадила його на WordPress за готовим графічним проєктом (власна тема). WordPress · власна тема · RWD"
+        "pl": "Strona unijnego projektu „Kompleksowa Ścieżka Integracji” dla obywateli Ukrainy na Mazowszu — wsparcie w nauce języka polskiego, zdobyciu zawodu i znalezieniu pracy (Fundusze Europejskie dla Mazowsza). Zakodowałam i wdrożyłam ją na WordPressie na podstawie gotowego projektu graficznego: własny motyw, bloki Gutenberga i trzy wersje językowe z tłumaczeniami w Polylangu. WordPress · własny motyw · Gutenberg · Polylang (3 języki) · RWD",
+        "en": "Website of the EU-funded project Comprehensive Integration Path for Ukrainian citizens in Mazovia — support with learning Polish, gaining a profession and finding a job (European Funds for Mazovia). I coded and deployed it on WordPress based on a ready-made graphic design: custom theme, Gutenberg blocks and three language versions translated with Polylang. WordPress · custom theme · Gutenberg · Polylang (3 languages) · responsive design",
+        "ua": "Сайт європейського проєкту «Комплексний шлях інтеграції» для громадян України на Мазовії — підтримка у вивченні польської мови, здобутті професії та пошуку роботи (Європейські фонди для Мазовії). Закодувала та впровадила його на WordPress за готовим графічним проєктом: власна тема, блоки Gutenberg і три мовні версії з перекладами в Polylang. WordPress · власна тема · Gutenberg · Polylang (3 мови) · RWD"
       },
       "period": "avista"
     },
