@@ -2,6 +2,23 @@
   "site": {},
   "avista": [
     {
+      "id": "aktywnaukraina.com",
+      "title": {
+        "pl": "Aktywna Ukraina — Kompleksowa Ścieżka Integracji",
+        "en": "Aktywna Ukraina — Comprehensive Integration Path",
+        "ua": "Активна Україна — Комплексний шлях інтеграції"
+      },
+      "url": "https://aktywnaukraina.com/",
+      "host": "aktywnaukraina.com",
+      "team": null,
+      "note": {
+        "pl": "Strona unijnego projektu „Kompleksowa Ścieżka Integracji” dla obywateli Ukrainy na Mazowszu — wsparcie w nauce języka polskiego, zdobyciu zawodu i znalezieniu pracy (Fundusze Europejskie dla Mazowsza). Zakodowałam i wdrożyłam ją na WordPressie na podstawie gotowego projektu graficznego (własny motyw). WordPress · własny motyw · RWD",
+        "en": "Website of the EU-funded project Comprehensive Integration Path for Ukrainian citizens in Mazovia — support with learning Polish, gaining a profession and finding a job (European Funds for Mazovia). I coded and deployed it on WordPress based on a ready-made graphic design (custom theme). WordPress · custom theme · responsive design",
+        "ua": "Сайт європейського проєкту «Комплексний шлях інтеграції» для громадян України на Мазовії — підтримка у вивченні польської мови, здобутті професії та пошуку роботи (Європейські фонди для Мазовії). Закодувала та впровадила його на WordPress за готовим графічним проєктом (власна тема). WordPress · власна тема · RWD"
+      },
+      "period": "avista"
+    },
+    {
       "id": "akademiata.pl",
       "title": "Akademia Techniczno-Artystyczna",
       "url": "https://akademiata.pl/",

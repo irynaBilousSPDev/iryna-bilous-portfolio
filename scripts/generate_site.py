@@ -988,6 +988,13 @@ def project_note_text(project: dict, lang: str) -> str | None:
     return str(note)
 
 
+def project_title_text(project: dict, lang: str) -> str:
+    title = project.get("title")
+    if isinstance(title, dict):
+        return title.get(lang if lang != "ua" else "ua") or title.get("pl") or title.get("en") or ""
+    return str(title or "")
+
+
 def proof_num_html(n: str) -> str:
     if n == "WCAG 2.1":
         return (
@@ -1006,7 +1013,8 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
         chunks.append('<div class="gallery-grid">')
         for p in PROJECTS[period]:
             thumb = f'{ap}assets/img/previews/{e(p["host"])}.webp'
-            title = e(p["title"])
+            title_raw = project_title_text(p, lang)
+            title = e(title_raw)
             host = e(p["host"])
             url = e(p["url"])
             team = team_label(p.get("team"), lang)
@@ -1031,8 +1039,8 @@ def gallery_html(lang: str, ap: str, copy: dict) -> str:
                     foot_bits.append(f'<div class="project-card__badges">{badge_html}</div>')
                 foot_html = f'<div class="project-card__foot">{"".join(foot_bits)}</div>'
             mod = " project-card--has-more" if desc_note else ""
-            alt = e(f'{p["title"]} — podgląd strony {p["host"]}' if lang == 'pl' else (
-                f'{p["title"]} — preview of {p["host"]}' if lang == 'en' else f'{p["title"]} — перегляд {p["host"]}'
+            alt = e(f'{title_raw} — podgląd strony {p["host"]}' if lang == 'pl' else (
+                f'{title_raw} — preview of {p["host"]}' if lang == 'en' else f'{title_raw} — перегляд {p["host"]}'
             ))
             chunks.append(
                 f'<article class="project-card{mod}">'
