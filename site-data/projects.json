@@ -2,6 +2,40 @@
   "site": {},
   "avista": [
     {
+      "id": "learning-impact.pl",
+      "title": {
+        "pl": "Learning Impact",
+        "en": "Learning Impact",
+        "ua": "Learning Impact"
+      },
+      "url": "https://learning-impact.pl/",
+      "host": "learning-impact.pl",
+      "team": null,
+      "note": {
+        "pl": "Strona konferencji Learning Impact 2027 (Fundacja ETRP, partnerzy ADN Akademia i Eduexpert): program, prelegenci, bilety i gala. Zakodowałam i wdrożyłam ją na WordPressie jako własny motyw z blokami Gutenberga. WordPress · własny motyw · Gutenberg · RWD",
+        "en": "Website of the Learning Impact 2027 conference (ETRP Foundation, partners ADN Akademia and Eduexpert): programme, speakers, tickets and gala. I coded and deployed it on WordPress as a custom theme with Gutenberg blocks. WordPress · custom theme · Gutenberg · responsive design",
+        "ua": "Сайт конференції Learning Impact 2027 (Фундація ETRP, партнери ADN Akademia та Eduexpert): програма, спікери, квитки та гала. Закодувала та впровадила його на WordPress як власну тему з блоками Gutenberg. WordPress · власна тема · Gutenberg · RWD"
+      },
+      "period": "avista"
+    },
+    {
+      "id": "sciezkaintegracji.pl",
+      "title": {
+        "pl": "Ścieżka Integracji",
+        "en": "Integration Path",
+        "ua": "Шлях інтеграції"
+      },
+      "url": "https://sciezkaintegracji.pl/",
+      "host": "sciezkaintegracji.pl",
+      "team": null,
+      "note": {
+        "pl": "Strona projektu „Kompleksowa ścieżka integracji obywateli Ukrainy” (KDK INFO, Fundusze Europejskie dla Mazowsza, EFS+): oferta wsparcia, aktualności i kontakt. Zakodowałam i wdrożyłam ją na WordPressie jako własny motyw. WordPress · własny motyw · Gutenberg · RWD",
+        "en": "Website of the Comprehensive Integration Path for Ukrainian citizens (KDK INFO, European Funds for Mazovia, ESF+): support offer, news and contact. I coded and deployed it on WordPress as a custom theme. WordPress · custom theme · Gutenberg · responsive design",
+        "ua": "Сайт проєкту «Комплексний шлях інтеграції громадян України» (KDK INFO, Європейські фонди для Мазовії, ESF+): пропозиція підтримки, новини та контакт. Закодувала та впровадила його на WordPress як власну тему. WordPress · власна тема · Gutenberg · RWD"
+      },
+      "period": "avista"
+    },
+    {
       "id": "aktywnaukraina.com",
       "title": {
         "pl": "Aktywna Ukraina — Kompleksowa Ścieżka Integracji",
