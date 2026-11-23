@@ -12,9 +12,9 @@
       "host": "learning-impact.pl",
       "team": null,
       "note": {
-        "pl": "Strona konferencji Learning Impact 2027 (Fundacja ETRP, partnerzy ADN Akademia i Eduexpert): program, prelegenci, bilety i gala. Zakodowałam i wdrożyłam ją na WordPressie jako własny motyw z blokami Gutenberga. WordPress · własny motyw · Gutenberg · RWD",
-        "en": "Website of the Learning Impact 2027 conference (ETRP Foundation, partners ADN Akademia and Eduexpert): programme, speakers, tickets and gala. I coded and deployed it on WordPress as a custom theme with Gutenberg blocks. WordPress · custom theme · Gutenberg · responsive design",
-        "ua": "Сайт конференції Learning Impact 2027 (Фундація ETRP, партнери ADN Akademia та Eduexpert): програма, спікери, квитки та гала. Закодувала та впровадила його на WordPress як власну тему з блоками Gutenberg. WordPress · власна тема · Gutenberg · RWD"
+        "pl": "Strona konferencji Learning Impact 2027 (Fundacja ETRP, partnerzy ADN Akademia i Eduexpert): program, prelegenci, gala i sprzedaż biletów w WooCommerce. Zakodowałam i wdrożyłam ją na WordPressie jako własny motyw z blokami Gutenberga. WordPress · własny motyw · Gutenberg · WooCommerce · RWD",
+        "en": "Website of the Learning Impact 2027 conference (ETRP Foundation, partners ADN Akademia and Eduexpert): programme, speakers, gala and ticket sales in WooCommerce. I coded and deployed it on WordPress as a custom theme with Gutenberg blocks. WordPress · custom theme · Gutenberg · WooCommerce · responsive design",
+        "ua": "Сайт конференції Learning Impact 2027 (Фундація ETRP, партнери ADN Akademia та Eduexpert): програма, спікери, гала та продаж квитків у WooCommerce. Закодувала та впровадила його на WordPress як власну тему з блоками Gutenberg. WordPress · власна тема · Gutenberg · WooCommerce · RWD"
       },
       "period": "avista"
     },
